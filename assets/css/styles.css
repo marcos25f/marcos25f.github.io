@@ -114,10 +114,11 @@ img{
 
 .section-title, .section-subtitle{
   text-align: center;
+  font-size: var(--biggest-font-size);
 }
 
 .section-title{
-  font-size: var(--h1-font-size);
+  font-size: var(--h2-font-size);
   color: var(--title-color);
   margin-bottom: var(--mb-3);
 }
@@ -261,7 +262,7 @@ img{
 }
 
 .home__subtitle{
-  font-size: var(--h1-font-size);
+  font-size: var(--h2-font-size);
   color: var(--title-color);
   margin-bottom: var(--mb-4);
 }
