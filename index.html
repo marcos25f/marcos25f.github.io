@@ -22,10 +22,8 @@
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item"><a href="#home" class="nav__link active-link">Casa</a></li>
-                    <li class="nav__item"><a href="#about" class="nav__link">Sobre Nos</a></li>
                     <li class="nav__item"><a href="indexe.html" class="nav__link">Pedidos</a></li>
                     <li class="nav__item"><a href="#contact" class="nav__link">contatos</a></li>
-                    <li class="nav__item"><a href="/home/index.html" class="nav__link">Avalie Nossos Pedidos</a></li>
                     <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
                 </ul>
             </div>
@@ -194,3 +192,32 @@
         <script src="assets/js/main.js"></script>
     </body>
 </html>
+<script>
+    // Função para adicionar um item ao carrinho
+    function adicionarItem(nome, preco) {
+        var item = { nome: nome, preco: preco };
+        var carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        carrinho.push(item);
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+        atualizarCarrinho();
+    }
+
+    // Função para exibir os itens do carrinho na página
+    function atualizarCarrinho() {
+        var carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        var carrinhoDiv = document.getElementById("carrinho");
+        carrinhoDiv.innerHTML = "";
+
+        carrinho.forEach(function(item) {
+            var itemDiv = document.createElement("div");
+            itemDiv.textContent = item.nome + " - R$ " + item.preco.toFixed(2);
+            carrinhoDiv.appendChild(itemDiv);
+        });
+    }
+
+    // Chame a função para exibir o carrinho ao carregar a página
+    window.onload = function() {
+        atualizarCarrinho();
+    };
+</script>

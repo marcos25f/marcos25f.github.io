@@ -1,211 +1,369 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-      
-        <title>Lecos's Burguer</title>
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Lecos's Burguer</title>
+</head>
+
 <body>
 
-         <!--barra de rolagem-->
-         <a href="#" class="scrolltop" id="scroll-top">
-            <i class='bx bx-chevron-up scrolltop__icon'></i>
-        </a>
-    
-        <header class="l-header" id="header">
-            <nav class="nav bd-container">
-                <a href="#" class="nav__logo">Lecos's Burguer</a>
-    
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="index.html" class="nav__link" >Casa</a></li>
-                        <li class="nav__item"><a href="index.html" class="nav__link">Sobre Nos</a></li>
-                        <li class="nav__item"><a href="indexe.html" class="nav__link active-link">Pedidos</a></li>
-                        <li class="nav__item"><a href="index.html" class="nav__link">contatos</a></li>
-                        <li class="nav__item"><a href="/home/index.html" class="nav__link">Avalie Nossos Pedidos</a></li>
-                        <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+    <!--barra de rolagem-->
+    <a href="#" class="scrolltop" id="scroll-top">
+        <i class='bx bx-chevron-up scrolltop__icon'></i>
+    </a>
+
+    <header class="l-header" id="header">
+        <nav class="nav bd-container">
+            <a href="#" class="nav__logo">Lecos's Burguer</a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Casa</a></li>
+                    <li class="nav__item"><a href="indexe.html" class="nav__link active-link">Pedidos</a></li>
+                    <li class="nav__item"><a href="index.html" class="nav__link">contatos</a></li>
+                    <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <section id="menu" class="menu section bd-container">
+        <h2 class="section-title">Pedidos</h2>
+        <div class="menu__container bd-grid">
+            <div class="menu__content">
+                <img src="assets/img/prato1.jpg" alt="Classico Lecos" class="menu__img">
+                <h3 class="menu__name">Classico Lecos</h3>
+                <span class="menu__detail">Hambúrguer de carne bovina grelhada, alface, tomate, cebola, picles e molho
+                    especial da casa. Servido em pão brioche</span>
+                <span class="menu__price">R$22,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Classico Lecos', 22.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+
+            <div class="menu__content">
+                <img src="assets/img/prato2.jpg" alt="Cheese Bacon Lecos" class="menu__img">
+                <h3 class="menu__name">Cheese Bacon Lecos</h3>
+                <span class="menu__detail"> Delicioso hambúrguer de carne bovina, coberto com queijo cheddar derretido,
+                    fatias crocantes de bacon, alface e tomate. Servido em pão brioche com molho barbecue.</span>
+                <span class="menu__preci">R$ 27,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Cheese Bacon Lecos', 27.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+            <div class="menu__content">
+                <img src="assets/img/prato3.jpg" alt="Veggie Delight" class="menu__img">
+                <h3 class="menu__name">Veggie Delight</h3>
+                <span class="menu__detail">Hambúrguer vegetariano feito de quinoa e feijão preto, com alface, tomate,
+                    cebola roxa e molho de abacate. Servido em pão integral.</span>
+                <span class="menu__preci"> R$ 25,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Veggie Delight', 25.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+
+            <div class="menu__content">
+                <img src="assets/img/prato4.jpg" alt="Firehouse Lecos" class="menu__img">
+                <h3 class="menu__name">Firehouse Lecos </h3>
+                <span class="menu__detail"> Hambúrguer de carne bovina picante, com jalapeños, queijo pepper jack,
+                    alface, cebola roxa e nosso molho de pimenta caseiro. Servido em pão brioche. </span>
+                <span class="menu__preci">R$ 28,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Firehouse Lecos', 28.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+            <div class="menu__content">
+                <img src="assets/img/prato5.jpg" alt="Batatas Frita" class="menu__img">
+                <h3 class="menu__name">Batatas Fritas</h3>
+                <span class="menu__detail">Crocantes por fora, macias por dentro.</span>
+                <span class="menu__preci">R$9,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Batatas Fritas', 9.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+
+            <div class="menu__content">
+                <img src="assets/img/prato6.jpg" alt="Onion Rings" class="menu__img">
+                <h3 class="menu__name">Onion Rings</h3>
+                <span class="menu__detail">Anéis de cebola empanados e fritos até ficarem dourados.</span>
+                <span class="menu__preci"> 11,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Onion Rings', 11.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+            <div class="menu__content">
+                <img src="assets/img/prato7.jpg" alt="Batata Doce Frita" class="menu__img">
+                <h3 class="menu__name">Batata Doce Frita</h3>
+                <span class="menu__detail">Batatas doces cortadas e fritas, servidas com molho de iogurte e ervas</span>
+                <span class="menu__preci">R$12,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Batata Doce Frita', 12.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+
+            <div class="menu__content">
+                <img src="assets/img/prato8.jpg" alt="Refrigerante" class="menu__img">
+                <h3 class="menu__name">Refrigerante</h3>
+                <span class="menu__detail"> Coca-Cola, Fanta, Sprite. </span>
+                <span class="menu__preci"> R$ 4,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Refrigerante', 4.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+            <div class="menu__content">
+                <img src="assets/img/prato9.jpg" alt="Água Mineral" class="menu__img">
+                <h3 class="menu__name">Água Mineral</h3>
+                <span class="menu__detail"> Com ou sem gás. </span>
+                <span class="menu__preci">R$3,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Água Mineral', 3.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+
+            <div class="menu__content">
+                <img src="assets/img/prato10.jpg" alt="Shake de Oreo" class="menu__img">
+                <h3 class="menu__name">Shake de Oreo</h3>
+                <span class="menu__detail">Milkshake cremoso com pedaços de biscoito Oreo.</span>
+                <span class="menu__preci">R$14,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Shake de Oreo', 14.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+            <div class="menu__content">
+                <img src="assets/img/prato11.jpg" alt="Suco Natural" class="menu__img">
+                <h3 class="menu__name">Suco Natural</h3>
+                <span class="menu__detail"> Laranja, Limonada, Maracujá</span>
+                <span class="menu__preci">R$7,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Suco Natural', 7.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+
+            <div class="menu__content">
+                <img src="assets/img/prato12.jpg" alt="Brownie de Chocolate " class="menu__img">
+                <h3 class="menu__name">Brownie de Chocolate </h3>
+                <span class="menu__detail"> Com nozes, servido quente com sorvete de baunilha.</span>
+                <span class="menu__preci">16,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Brownie de Chocolate', 16.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+            <div class="menu__content">
+                <img src="assets/img/prato13.jpg" alt="Cheesecake de Frutas Vermelhas " class="menu__img">
+                <h3 class="menu__name">Cheesecake de Frutas Vermelhas</h3>
+                <span class="menu__detail">Cheesecake cremoso com cobertura de frutas vermelhas</span>
+                <span class="menu__preci">18,90</span>
+                <button class="button menu__button"
+                    onclick="adicionarAoCarrinho('Cheesecake de Frutas Vermelhas', 18.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+
+            <div class="menu__content">
+                <img src="assets/img/prato14.jpg" alt="Sundae Lecos" class="menu__img">
+                <h3 class="menu__name">Sundae Lecos</h3>
+                <span class="menu__detail">Sorvete de baunilha com calda de chocolate, chantilly e uma cereja no
+                    topo</span>
+                <span class="menu__preci">13,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Sundae Lecos', 13.90)"><i
+                        class='bx bx-cart-alt'></i></button>
+            </div>
+            <div class="menu__content">
+                <img src="assets/img/pedidos1.png" alt="faça seu pedido">
+                 <button class="button menu__button" onclick="abrirMiniJanela()"><i
+                    class='bx bx-cart-alt'></i></button>
+                 
+                 <div id="carrinho" class="carrinho-popup">
+                <h2>Carrinho de Compras</h2>
+                <ul id="lista-produtos"></ul>
+                <p>Total: <span id="total">R$ 0,00</span></p>
+                <button onclick="finalizarPedido()">Finalizar Pedido</button>
+                <button onclick="fecharMiniJanela()">Fechar Carrinho</button>
+            </div>
+            </div>
+           
+
+           
+
+            <script>
+                let produtos = [];
+                let total = 0;
+
+                function abrirMiniJanela() {
+                    document.getElementById('carrinho').style.display = 'block';
+                }
+
+                function fecharMiniJanela() {
+                    document.getElementById('carrinho').style.display = 'none';
+                }
+
+                function adicionarProduto(nome, preco) {
+                    produtos.push({ nome, preco });
+                    total += preco;
+                    listarProdutos();
+                    atualizarTotal();
+                }
+
+                function listarProdutos() {
+                    const listaProdutos = document.getElementById('lista-produtos');
+                    listaProdutos.innerHTML = '';
+                    produtos.forEach(produto => {
+                        const item = document.createElement('li');
+                        item.textContent = `${produto.nome} - R$ ${produto.preco}`;
+                        listaProdutos.appendChild(item);
+                    });
+                }
+
+                function atualizarTotal() {
+                    document.getElementById('total').textContent = `R$ ${total.toFixed(2)}`;
+                }
+                function adicionarProduto(nome, preco) {
+                    produtos.push({ nome, preco });
+                    total += preco;
+                    listarProdutos();
+                    atualizarTotal();
+                }
+
+                function removerProduto(index) {
+                    total -= produtos[index].preco;
+                    produtos.splice(index, 1);
+                    listarProdutos();
+                    atualizarTotal();
+                }
+
+                function adicionarAoCarrinho(nome, preco) {
+                    adicionarProduto(nome, preco);-
+                    alert(`${nome} foi adicionado ao carrinho!`);
+                }
+
+                function listarProdutos() {
+                    const listaProdutos = document.getElementById('lista-produtos');
+                    listaProdutos.innerHTML = '';
+                    produtos.forEach((produto, index) => {
+                        const item = document.createElement('li');
+                        item.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
+                        const botaoRemover = document.createElement('button');
+                        botaoRemover.textContent = 'Remover';
+                        botaoRemover.onclick = function () { removerProduto(index); };
+                        item.appendChild(botaoRemover);
+                        listaProdutos.appendChild(item);
+                    });
+                }
+
+                function removerProduto(index) {
+                    // Atualiza o total e remove o produto pelo índice
+                    total -= produtos[index].preco;
+                    produtos.splice(index, 1);
+                    listarProdutos();
+                    atualizarTotal();
+                }
+
+                // Função chamada ao clicar em "Finalizar Pedido"
+                function finalizarPedido() {
+                    if (produtos.length > 0) {
+                        // Aqui, você substituiria por uma lógica de checkout real
+                        alert('Pedido finalizado com sucesso!');
+                        produtos = []; // Limpa o array de produtos
+                        total = 0; // Zera o total
+                        listarProdutos(); // Atualiza a lista de produtos
+                        atualizarTotal(); // Atualiza o total
+                    } else {
+                        alert('Adicione algum produto ao carrinho antes de finalizar o pedido.');
+                    }
+                }
+                function listarProdutos() {
+                    const listaProdutos = document.getElementById('lista-produtos');
+                    listaProdutos.innerHTML = '';
+                    produtos.forEach((produto, index) => {
+                        const item = document.createElement('li');
+                        item.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
+                        const botaoRemover = document.createElement('button');
+                        botaoRemover.textContent = 'Remover';
+                        botaoRemover.onclick = function () { removerProduto(index); };
+                        item.appendChild(botaoRemover);
+                        listaProdutos.appendChild(item);
+                    });
+                }
+
+                function removerProduto(index) {
+                    // Atualiza o total e remove o produto pelo índice
+                    total -= produtos[index].preco;
+                    produtos.splice(index, 1);
+                    listarProdutos();
+                    atualizarTotal();
+                }
+
+                // Função chamada ao clicar em "Finalizar Pedido"
+                function finalizarPedido() {
+                    if (produtos.length > 0) {
+                        // Aqui, você substituiria por uma lógica de checkout real
+                        alert('Pedido finalizado com sucesso!');
+                        produtos = []; // Limpa o array de produtos
+                        total = 0; // Zera o total
+                        listarProdutos(); // Atualiza a lista de produtos
+                        atualizarTotal(); // Atualiza o total
+                    } else {
+                        alert('Adicione algum produto ao carrinho antes de finalizar o pedido.');
+                    }
+                }
+
+            </script>
+    </section>
+
+
+    <div class="footer__content">
+        <footer class="footer section bd-container">
+            <div class="footer__container bd-grid">
+                <div class="footer__content">
+                    <a href="#" class="footer__logo">Lecos's Burguer</a>
+                    <span class="footer__description">hamburgueria</span>
+                    <div>
+                        <a href="#" class="footer__social"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" class="footer__social"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" class="footer__social"><i class='bx bxl-twitter'></i></a>
+                    </div>
+                </div>
+
+
+
+                <div class="footer__content">
+                    <h3 class="footer__title">Informação</h3>
+                    <ul>
+                        <li><a href="#" class="footer__link">Entre em contato conosco</a></li>
+                        <li><a href="#" class="footer__link">Política de privacidade</a></li>
+                        <li><a href="#" class="footer__link">Termos de serviço</a></li>
                     </ul>
                 </div>
-    
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
+
+                <div class="footer__content">
+                    <h3 class="footer__title">Endereço</h3>
+                    <ul>
+                        <li>São Paulo - Brasil</li>
+                        <li>Proximo ao centro</li>
+                        <li>999 - 888 - 777</li>
+                        <li>Lecos's Burguer@gemail.com</li>
+                    </ul>
                 </div>
-            </nav>
-        </header>
-      
-            <section id="menu" class="menu section bd-container">
-                <h2 class="section-title">Pedidos</h2>
-                <div class="menu__container bd-grid">
-                    
-                    
-                    <div class="menu__content">
-                        <img src="assets/img/prato1.jpg" alt="Classico Lecos" class="menu__img">
-                        <h3 class="menu__name">Classico Lecos</h3>
-                        <span class="menu__detail">Hambúrguer de carne bovina grelhada, alface, tomate, cebola, picles e molho especial da casa. Servido em pão brioche</span>
-                        <span class="menu__preci">R$22,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-        
-                 
-                    <div class="menu__content">
-                        <img src="assets/img/prato2.jpg" alt="Cheese Bacon Lecos" class="menu__img">
-                        <h3 class="menu__name">Cheese Bacon Lecos</h3>
-                        <span class="menu__detail"> Delicioso hambúrguer de carne bovina, coberto com queijo cheddar derretido, fatias crocantes de bacon, alface e tomate. Servido em pão brioche com molho barbecue.</span>
-                        <span class="menu__preci">R$ 27,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-
-                    <div class="menu__content">
-                        <img src="assets/img/prato3.jpg" alt="Veggie Delight" class="menu__img">
-                        <h3 class="menu__name">Veggie Delight</h3>
-                        <span class="menu__detail">Hambúrguer vegetariano feito de quinoa e feijão preto, com alface, tomate, cebola roxa e molho de abacate. Servido em pão integral.</span>
-                        <span class="menu__preci"> R$ 25,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-        
-                 
-                    <div class="menu__content">
-                        <img src="assets/img/prato4.jpg" alt="Firehouse Lecos" class="menu__img">
-                        <h3 class="menu__name">Firehouse Lecos </h3>
-                        <span class="menu__detail"> Hambúrguer de carne bovina picante, com jalapeños, queijo pepper jack, alface, cebola roxa e nosso molho de pimenta caseiro. Servido em pão brioche. </span>
-                        <span class="menu__preci">R$ 28,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-
-                    <div class="menu__content">
-                        <img src="assets/img/prato5.jpg" alt="Batatas Frita" class="menu__img">
-                        <h3 class="menu__name">Batatas Fritas</h3>
-                        <span class="menu__detail">Crocantes por fora, macias por dentro.</span>
-                        <span class="menu__preci">R$9,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-        
-                 
-                    <div class="menu__content">
-                        <img src="assets/img/prato6.jpg" alt="Onion Rings" class="menu__img">
-                        <h3 class="menu__name">Onion Rings</h3>
-                        <span class="menu__detail">Anéis de cebola empanados e fritos até ficarem dourados.</span>
-                        <span class="menu__preci"> 11,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-
-                    <div class="menu__content">
-                        <img src="assets/img/prato7.jpg" alt="Batata Doce Frita" class="menu__img">
-                        <h3 class="menu__name">Batata Doce Frita</h3>
-                        <span class="menu__detail">Batatas doces cortadas e fritas, servidas com molho de iogurte e ervas</span>
-                        <span class="menu__preci">R$12,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-        
-                 
-                    <div class="menu__content">
-                        <img src="assets/img/prato8.jpg" alt="Refrigerante" class="menu__img">
-                        <h3 class="menu__name">Refrigerante</h3>
-                        <span class="menu__detail"> Coca-Cola, Fanta, Sprite. </span>
-                        <span class="menu__preci"> R$ 4,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-
-                    <div class="menu__content">
-                        <img src="assets/img/prato9.jpg" alt="Água Mineral" class="menu__img">
-                        <h3 class="menu__name">Água Mineral</h3>
-                        <span class="menu__detail"> Com ou sem gás. </span>
-                        <span class="menu__preci">R$3,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-        
-                 
-                    <div class="menu__content">
-                        <img src="assets/img/prato10.jpg" alt="Shake de Oreo" class="menu__img">
-                        <h3 class="menu__name">Shake de Oreo</h3>
-                        <span class="menu__detail">Milkshake cremoso com pedaços de biscoito Oreo.</span>
-                        <span class="menu__preci">R$14,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-
-                    <div class="menu__content">
-                        <img src="assets/img/prato11.jpg" alt="Suco Natural" class="menu__img">
-                        <h3 class="menu__name">Suco Natural</h3>
-                        <span class="menu__detail"> Laranja, Limonada, Maracujá</span>
-                        <span class="menu__preci">R$7,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-        
-                 
-                    <div class="menu__content">
-                        <img src="assets/img/prato12.jpg" alt="Brownie de Chocolate " class="menu__img">
-                        <h3 class="menu__name">Brownie de Chocolate </h3>
-                        <span class="menu__detail"> Com nozes, servido quente com sorvete de baunilha.</span>
-                        <span class="menu__preci">16,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-
-                    <div class="menu__content">
-                        <img src="assets/img/prato13.jpg" alt="Cheesecake de Frutas Vermelhas " class="menu__img">
-                        <h3 class="menu__name">Cheesecake de Frutas Vermelhas</h3>
-                        <span class="menu__detail">Cheesecake cremoso com cobertura de frutas vermelhas</span>
-                        <span class="menu__preci">18,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-
-                    <div class="menu__content">
-                        <img src="assets/img/prato14.jpg" alt="Sundae Lecos" class="menu__img">
-                        <h3 class="menu__name">Sundae Lecos</h3>
-                        <span class="menu__detail">Sorvete de baunilha com calda de chocolate, chantilly e uma cereja no topo</span>
-                        <span class="menu__preci">13,90</span>
-                        <a href="#" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
-                    </div>
-
-                </div>
-            </section>
-
-<div class="footer__content">
-<footer class="footer section bd-container">
-    <div class="footer__container bd-grid">
-        <div class="footer__content">
-            <a href="#" class="footer__logo">Lecos's Burguer</a>
-            <span class="footer__description">hamburgueria</span>
-            <div>
-                <a href="#" class="footer__social"><i class='bx bxl-facebook'></i></a>
-                <a href="#" class="footer__social"><i class='bx bxl-instagram'></i></a>
-                <a href="#" class="footer__social"><i class='bx bxl-twitter'></i></a>
             </div>
-        </div>
 
-        
-
-        <div class="footer__content">
-            <h3 class="footer__title">Informação</h3>
-            <ul>
-                <li><a href="#" class="footer__link">Entre em contato conosco</a></li>
-                <li><a href="#" class="footer__link">Política de privacidade</a></li>
-                <li><a href="#" class="footer__link">Termos de serviço</a></li>
-            </ul>
-        </div>
-
-        <div class="footer__content">
-            <h3 class="footer__title">Endereço</h3>
-            <ul>
-                <li>São Paulo - Brasil</li>
-                <li>Proximo ao centro</li>
-                <li>999 - 888 - 777</li>
-                <li>Lecos's Burguer@gemail.com</li>
-            </ul>
-        </div>
-    </div>
-
-    <p class="footer__copy">&#169; Bedimcode 2020. Todos os direitos reservados</p>
-</footer>
+            <p class="footer__copy">&#169; Bedimcode 2020. Todos os direitos reservados</p>
+        </footer>
 
 
-<script src="https://unpkg.com/scrollreveal"></script>
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script src="assets/js/main.js"></script>
 
 
-<script src="assets/js/main.js"></script>
+
 
 </body>
+
 </html>
