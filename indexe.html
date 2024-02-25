@@ -19,13 +19,15 @@
 
     <header class="l-header" id="header">
         <nav class="nav bd-container">
-            <a href="#" class="nav__logo">Lecos's Burguer</a>
+            <a href="#" class="nav__logo">-Lecos's Burguer</a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item"><a href="index.html" class="nav__link">Casa</a></li>
                     <li class="nav__item"><a href="indexe.html" class="nav__link active-link">Pedidos</a></li>
                     <li class="nav__item"><a href="index.html" class="nav__link">contatos</a></li>
+                    <button class="button menu__button" onclick="finalizarPedido()"><i
+                        class='bx bx-cart-alt'></i></button>
                     <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
                 </ul>
             </div>
@@ -185,7 +187,7 @@
                 <h2>Carrinho de Compras</h2>
                 <ul id="lista-produtos"></ul>
                 <p>Total: <span id="total">R$ 0,00</span></p>
-                <button onclick="finalizarPedido()">Finalizar Pedido</button>
+                
                 <button onclick="fecharMiniJanela()">Fechar Carrinho</button>
             </div>
             </div>
@@ -314,6 +316,23 @@
                         alert('Adicione algum produto ao carrinho antes de finalizar o pedido.');
                     }
                 }
+                function finalizarPedido() {
+    if (produtos.length > 0) {
+        // Aqui, você substituiria por uma lógica de checkout real
+        alert('Por favor, preencha seus dados de entrega:');
+        
+        // Abre uma nova aba ou janela para inserir dados de entrega (substitua a URL pela página de checkout real)
+        window.open('pagina-de-checkout.html', '_blank');
+        
+        // Após a conclusão do processo de checkout, você pode limpar o carrinho
+        produtos = []; // Limpa o array de produtos
+        total = 0; // Zera o total
+        listarProdutos(); // Atualiza a lista de produtos
+        atualizarTotal(); // Atualiza o total
+    } else {
+        alert('Adicione algum produto ao carrinho antes de finalizar o pedido.');
+    }
+}
 
             </script>
     </section>

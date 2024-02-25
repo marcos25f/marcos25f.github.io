@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Pagamento - Lecos's Burguer</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Adicione outros estilos ou bibliotecas conforme necessário. -->
+    <style>
+      .card {
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<body>
+    <div class="bd-container">
+        <h2 class="section-title">Checkout</h2>
+        <form id="formCheckout" class="checkout-form" action="path_to_server_endpoint" method="POST">
+            <li class="checkout-section">
+                <ul><h3>Informações de Entrega</h3></ul>
+                <ul><input type="text" id="nome" name="nome" placeholder="Seu nome completo" required></ul>
+                <ul><input type="email" id="email" name="email" placeholder="Seu e-mail" required></ul>
+                <ul><input type="text" id="endereco" name="endereco" placeholder="Endereço para entrega" required></ul>
+                <ul><input type="text" id="cidade" name="cidade" placeholder="Cidade" required></ul>
+                <ul><input type="text" id="estado" name="estado" placeholder="Estado" required></ul>
+                <ul><input type="text" id="cep" name="cep" placeholder="CEP" required></ul>
+            </lis>
+            <div class="card">
+              <h1>Formulário de Pagamento</h1>
+              <form>
+                  <label for="nome">Nome no Cartão:</label>
+                  <input type="text" id="nome" name="nome" required>
+                  
+                  <label for="numero-cartao">Número do Cartão:</label>
+                  <input type="text" id="numero-cartao" name="numero-cartao" required>
+                  
+                  <label for="validade">Data de Validade:</label>
+                  <input type="text" id="validade" name="validade" placeholder="MM/AA" required>
+                  
+                  <label for="codigo-seguranca">Código de Segurança:</label>
+                  <input type="text" id="codigo-seguranca" name="codigo-seguranca" required>
+                  
+                  <label for="valor">Valor a Pagar:</label>
+                  <input type="text" id="valor" name="valor" required>
+                  
+                  <label for="endereco">Endereço de Cobrança:</label>
+                  <textarea id="endereco" name="endereco" required></textarea>
+                  
+                  <button type="submit">Pagar</button>
+              </form>
+          </div>
+            <div class="checkout-section">
+                <button type="submit" class="button" <link rel="indexe.html"  href="indexe.html">Finalizar Pedido</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="assets/js/main.js">
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      function finalizarPedido() {
+    if (produtos.length > 0) {
+        // Aqui, você substituiria por uma lógica de checkout real
+        alert('Por favor, preencha seus dados de entrega:');
+        
+        // Abre uma nova aba ou janela para inserir dados de entrega (substitua a URL pela página de checkout real)
+        window.open('pagina-de-checkout.html', '_blank');
+        
+        // Após a conclusão do processo de checkout, você pode limpar o carrinho
+        produtos = []; // Limpa o array de produtos
+        total = 0; // Zera o total
+        listarProdutos(); // Atualiza a lista de produtos
+        atualizarTotal(); // Atualiza o total
+        
+        // Redireciona o navegador de volta para a página original
+        window.location.href = 'index.html'; // Substitua 'index.html' pela página original
+    } else {
+        alert('Adicione algum produto ao carrinho antes de finalizar o pedido.');
+    }
+}
+      // Aqui você pode adicionar código para validar os campos do formulário antes de enviar
+  });
+  </script>
+  <div class="footer__content">
+    <p class="footer__copy">&#169; Bedimcode 2020. Todos os direitos reservados</p>
+</body>
+
+</html>
