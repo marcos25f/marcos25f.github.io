@@ -19,18 +19,36 @@
 
     <header class="l-header" id="header">
         <nav class="nav bd-container">
-            <a href="#" class="nav__logo">-Lecos's Burguer</a>
+            <a href="#" class="nav__logo">Lecos's Burguer</a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item"><a href="index.html" class="nav__link">Casa</a></li>
                     <li class="nav__item"><a href="indexe.html" class="nav__link active-link">Pedidos</a></li>
                     <li class="nav__item"><a href="index.html" class="nav__link">contatos</a></li>
-                    <button class="button menu__button" onclick="finalizarPedido()"><i
-                        class='bx bx-cart-alt'></i></button>
                     <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
                 </ul>
             </div>
+
+            <div class="menu__detail">
+                       
+                <button class="button menu__button" onclick="abrirMiniJanela()"><i
+                   class='bx bx-cart-alt'></i></button>
+                
+                <div id="carrinho" class="carrinho-popup">
+               <h2>Carrinho de Compras</h2>
+               <ul id="lista-produtos"></ul>
+               <p>Total: <span id="total">R$ 0,00</span></p>
+               
+               <button onclick="fecharMiniJanela()">Fechar Carrinho</button>
+               <button onclick="finalizarPedido()">Finalizar Pedidos</button>
+           </div>
+           </div>
+
+
+
+
+
 
             <div class="nav__toggle" id="nav-toggle">
                 <i class='bx bx-menu'></i>
@@ -178,20 +196,7 @@
                 <button class="button menu__button" onclick="adicionarAoCarrinho('Sundae Lecos', 13.90)"><i
                         class='bx bx-cart-alt'></i></button>
             </div>
-            <div class="menu__content">
-                <img src="assets/img/pedidos1.png" alt="faça seu pedido">
-                 <button class="button menu__button" onclick="abrirMiniJanela()"><i
-                    class='bx bx-cart-alt'></i></button>
-                 
-                 <div id="carrinho" class="carrinho-popup">
-                <h2>Carrinho de Compras</h2>
-                <ul id="lista-produtos"></ul>
-                <p>Total: <span id="total">R$ 0,00</span></p>
-                
-                <button onclick="fecharMiniJanela()">Fechar Carrinho</button>
-            </div>
-            </div>
-           
+
 
            
 
