@@ -561,6 +561,67 @@ img{
     }
 }
 
+.l-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ocupando toda largura do container .l-header */
+}
+
+
+
+.nav__toggle {
+  /* Estilos do botão toggle (hamburger menu) */
+  position: absolute;
+  right: 0; /* Se você quiser o botão à direita */
+}
+
+#carrinho {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #fff; /* Cor de fundo do carrinho, você pode personalizar */
+  padding: 20px;
+  max-height: 100vh; /* Define a altura máxima do carrinho até a altura da tela */
+  overflow-y: auto; /* Adiciona uma barra de rolagem vertical se o conteúdo do carrinho for maior do que a tela */
+  background-color: rgb(77, 37, 37); /* Adiciona a cor preta ao fundo da aba Carrinho */
+  color: white; /* Define a cor do texto como branco para contrastar com o fundo preto */
+  font-size: 1.20em; /* Exemplo de tamanho da fonte aumentado */
+}
+
+.botao-carrinho {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 10px; /* Para dar espaço entre o texto do produto e o ícone */
+  font-size: 1.2em;
+  color: #ff4848; /* Cor do ícone, você pode escolher */
+}
+.botao-carrinho:carrinho{
+  color: #048654;
+}
+
+.botao-remover {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 10px; /* Para dar espaço entre o texto do produto e o ícone */
+  font-size: 1.2em;
+  color: #666; /* Cor do ícone, você pode escolher */
+}
+
+.botao-remover:hover {
+  color: #06f812; /* Cor do ícone ao passar o mouse, você pode escolher */
+}
 
 
 
