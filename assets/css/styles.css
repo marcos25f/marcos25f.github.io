@@ -623,5 +623,36 @@ img{
   color: #06f812; /* Cor do ícone ao passar o mouse, você pode escolher */
 }
 
+#aba-carrinho {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 20px;
+}
 
+#form-entrega {
+  margin-top: 20px;
+}
+
+#form-entrega input[type="text"],
+#form-entrega textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#form-entrega button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#form-entrega button:hover {
+  background-color: #0056b3;
+}
 

@@ -43,7 +43,7 @@
                <button class="botao-carrinho" onclick="fecharMiniJanela()">
                 <i class='bx bx-x'></i> 
                </button>
-               <button class="botao-carrinho" onclick="finalizarPedido()">
+               <button class="botao-carrinho" onclick="finalizarPedido('indexe.html')">
                 <i class='bx bx-cart-alt'></i>
                </button>
               
@@ -202,247 +202,100 @@
                         class='bx bx-cart-alt'></i></button>
             </div>
 
-
-           
-
             <script>
                 let produtos = [];
                 let total = 0;
-
+            
                 function abrirMiniJanela() {
                     document.getElementById('carrinho').style.display = 'block';
                 }
-
+            
                 function fecharMiniJanela() {
                     document.getElementById('carrinho').style.display = 'none';
                 }
-
+            
                 function adicionarProduto(nome, preco) {
-                    produtos.push({ nome, preco });
+                    let produtoExiste = false;
+                    for (let i = 0; i < produtos.length; i++) {
+                        if (produtos[i].nome === nome) {
+                            produtos[i].quantidade++;
+                            produtoExiste = true;
+                            break;
+                        }
+                    }
+                    if (!produtoExiste) {
+                        produtos.push({ nome, preco, quantidade: 1 });
+                    }
                     total += preco;
                     listarProdutos();
                     atualizarTotal();
                 }
-
-                function listarProdutos() {
-                    const listaProdutos = document.getElementById('lista-produtos');
-                    listaProdutos.innerHTML = '';
-                    produtos.forEach(produto => {
-                        const item = document.createElement('li');
-                        item.textContent = `${produto.nome} - R$ ${produto.preco}`;
-                        listaProdutos.appendChild(item);
-                    });
+            
+                function removerProduto(index) {
+                    let produto = produtos[index];
+                    if (produto.quantidade > 1) {
+                        produto.quantidade--;
+                        total -= produto.preco;
+                    } else {
+                        total -= produto.preco;
+                        produtos.splice(index, 1);
+                    }
+                    listarProdutos();
+                    atualizarTotal();
                 }
-
+            
                 function atualizarTotal() {
                     document.getElementById('total').textContent = `R$ ${total.toFixed(2)}`;
                 }
-                function adicionarProduto(nome, preco) {
-                    produtos.push({ nome, preco });
-                    total += preco;
-                    listarProdutos();
-                    atualizarTotal();
+            
+                function listarProdutos() {
+                    const listaProdutos = document.getElementById('lista-produtos');
+                    listaProdutos.innerHTML = '';
+                    
+                    produtos.forEach((produto, index) => {
+                        const item = document.createElement('li');
+                        item.textContent = `${produto.nome} (R$ ${produto.preco.toFixed(2)} x ${produto.quantidade})`;
+                        const botaoRemover = document.createElement('button');
+                        botaoRemover.textContent = 'Remover';
+                        botaoRemover.onclick = function () { removerProduto(index); };
+                        item.appendChild(botaoRemover);
+                        listaProdutos.appendChild(item);
+                    });
+            
+                    if(produtos.length === 0){
+                        listaProdutos.innerHTML =
+                        '<li>Seu carrinho está vazio. Adicione produtos!</li>';
+                    }
                 }
-
-                function removerProduto(index) {
-                    total -= produtos[index].preco;
-                    produtos.splice(index, 1);
-                    listarProdutos();
-                    atualizarTotal();
-                }
-
+            
                 function adicionarAoCarrinho(nome, preco) {
-                    adicionarProduto(nome, preco);-
+                    adicionarProduto(nome, preco);
+                    abrirMiniJanela();
                     alert(`${nome} foi adicionado ao carrinho!`);
                 }
-
-                function listarProdutos() {
-                    const listaProdutos = document.getElementById('lista-produtos');
-                    listaProdutos.innerHTML = '';
-                    produtos.forEach((produto, index) => {
-                        const item = document.createElement('li');
-                        item.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
-                        const botaoRemover = document.createElement('button');
-                        botaoRemover.textContent = 'Remover';
-                        botaoRemover.onclick = function () { removerProduto(index); };
-                        item.appendChild(botaoRemover);
-                        listaProdutos.appendChild(item);
-                    });
-                }
-
-                function removerProduto(index) {
-                    // Atualiza o total e remove o produto pelo índice
-                    total -= produtos[index].preco;
-                    produtos.splice(index, 1);
-                    listarProdutos();
-                    atualizarTotal();
-                }
-
-                // Função chamada ao clicar em "Finalizar Pedido"
+            
                 function finalizarPedido() {
                     if (produtos.length > 0) {
-                        // Aqui, você substituiria por uma lógica de checkout real
-                        alert('Pedido finalizado com sucesso!');
-                        produtos = []; // Limpa o array de produtos
-                        total = 0; // Zera o total
-                        listarProdutos(); // Atualiza a lista de produtos
-                        atualizarTotal(); // Atualiza o total
+                        // Substitua esta linha pela sua lógica de finalização de pedido
+                        alert('numero de protocolo enviado para seu celular ou Email');
+                        produtos = [];
+                        total = 0;
+                        listarProdutos();
+                        atualizarTotal();
                     } else {
                         alert('Adicione algum produto ao carrinho antes de finalizar o pedido.');
                     }
                 }
-                function listarProdutos() {
-                    const listaProdutos = document.getElementById('lista-produtos');
-                    listaProdutos.innerHTML = '';
-                    produtos.forEach((produto, index) => {
-                        const item = document.createElement('li');
-                        item.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
-                        const botaoRemover = document.createElement('button');
-                        botaoRemover.textContent = 'Remover';
-                        botaoRemover.onclick = function () { removerProduto(index); };
-                        item.appendChild(botaoRemover);
-                        listaProdutos.appendChild(item);
-                    });
-                }
+            
+                // Inicializa o carrinho com uma mensagem de vazio
+                listarProdutos();
 
-                function removerProduto(index) {
-                    // Atualiza o total e remove o produto pelo índice
-                    total -= produtos[index].preco;
-                    produtos.splice(index, 1);
-                    listarProdutos();
-                    atualizarTotal();
-                }
-
-                // Função chamada ao clicar em "Finalizar Pedido"
-                function finalizarPedido() {
-                    if (produtos.length > 0) {
-                        // Aqui, você substituiria por uma lógica de checkout real
-                        alert('Pedido finalizado com sucesso!');
-                        produtos = []; // Limpa o array de produtos
-                        total = 0; // Zera o total
-                        listarProdutos(); // Atualiza a lista de produtos
-                        atualizarTotal(); // Atualiza o total
-                    } else {
-                        alert('Adicione algum produto ao carrinho antes de finalizar o pedido.');
-                    }
-                }
-                function finalizarPedido() {
-    if (produtos.length > 0) {
-        // Aqui, você substituiria por uma lógica de checkout real
-        alert('Por favor, preencha seus dados de entrega:');
-        
-        // Abre uma nova aba ou janela para inserir dados de entrega (substitua a URL pela página de checkout real)
-        window.open('pagina-de-checkout.html', '_blank');
-        
-        // Após a conclusão do processo de checkout, você pode limpar o carrinho
-        produtos = []; // Limpa o array de produtos
-        total = 0; // Zera o total
-        listarProdutos(); // Atualiza a lista de produtos
-        atualizarTotal(); // Atualiza o total
-    } else {
-        alert('Adicione algum produto ao carrinho antes de finalizar o pedido.');
-    }
-}
-function adicionarAoCarrinho(nome, preco) {
-    adicionarProduto(nome, preco);
-    document.getElementById('carrinho').style.display = 'block'; // Mostrar a aba.
-
-    // (A linha abaixo é opcional, depende se você quer ou não mostrar uma mensagem)
-    alert(`${nome} foi adicionado ao carrinho!`);
-}
-function removerProduto(index) {
-    total -= produtos[index].preco;
-    produtos.splice(index, 1);
-    
-    if (produtos.length === 0) {
-        fecharMiniJanela(); // Chama a função que fecha a aba do carrinho
-    } else {
-        listarProdutos();
-        atualizarTotal();
-    }
-}
-// Seletor para todos os botões "Remover"
-const botoesRemover = document.querySelectorAll('.remover-button');
-
-// Função para remover o item
-function removerItem(event) {
-    // Identifica o ID do item a ser removido
-    const itemId = event.target.getAttribute('data-item-id');
-    
-    // Aqui você teria a lógica para remover o item com o ID correspondente
-    // Por exemplo, você poderia remover um elemento da lista de produtos
-    console.log('Removendo item com ID:', itemId);
-}
-
-// Adiciona um ouvinte de evento de clique a todos os botões "Remover"
-botoesRemover.forEach(botao => {
-    botao.addEventListener('click', removerItem);
-});
-function listarProdutos() {
-    const listaProdutos = document.getElementById('lista-produtos');
-    listaProdutos.innerHTML = '';
-
-    if (produtos.length === 0) {
-        const mensagemVazio = document.createElement('li');
-        mensagemVazio.textContent = 'Adicione produtos ao carrinho';
-        mensagemVazio.id = 'carrinho-vazio'; // Isso permite que você estilo específico se desejar
-        listaProdutos.appendChild(mensagemVazio);
-        document.getElementById('carrinho').style.display = 'none'; // Esconde o carrinho se vazio
-    } else {
-        produtos.forEach((produto, index) => {
-            const item = document.createElement('li');
-            item.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
-            const botaoRemover = document.createElement('button');
-            botaoRemover.textContent = 'Remover';
-            botaoRemover.onclick = function() { removerProduto(index); };
-            item.appendChild(botaoRemover);
-            listaProdutos.appendChild(item);
-        });
-    }
-}
-
-function adicionarAoCarrinho(nome, preco) {
-    adicionarProduto(nome, preco);
-    document.getElementById('carrinho').style.display = 'block'; // Mostrar a aba.
-    listarProdutos(); // Atualiza a lista no carrinho
-    atualizarTotal();
-}
-
-function removerProduto(index) {
-    total -= produtos[index].preco;
-    produtos.splice(index, 1);
-    listarProdutos();
-    atualizarTotal();
-}
-
-// Inicialização inicial
-listarProdutos(); // Isso vai garantir que a mensagem de carrinho vazio seja exibida na carga inicial
-function listarProdutos() {
-    const listaProdutos = document.getElementById('lista-produtos');
-    listaProdutos.innerHTML = '';
-    
-    produtos.forEach((produto, index) => {
-        const item = document.createElement('li');
-        item.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
-        
-        const botaoRemover = document.createElement('button');
-        botaoRemover.className = 'botao-remover';
-        botaoRemover.innerHTML = '<i class="bx bx-trash"></i>';  // Adiciona o ícone de lixeira
-        botaoRemover.onclick = function() { removerProduto(index); };
-        
-        item.appendChild(botaoRemover);
-        listaProdutos.appendChild(item);
-    });
-    
-    // Ajuste adicional, para exibir mensagem de carrinho vazio
-    if (produtos.length === 0) {
-        const mensagemVazio = document.createElement('li');
-        mensagemVazio.textContent = 'Adicione produtos ao carrinho';
-        listaProdutos.appendChild(mensagemVazio);
-    }
-}
-
+                
             </script>
+            
+           
+
+            
     </section>
 
 
@@ -489,7 +342,19 @@ function listarProdutos() {
         <script src="assets/js/main.js"></script>
 
 
-
+        <div id="delivery-popup" class="delivery-popup">
+            <div class="popup-content">
+                <span class="close-popup" onclick="fecharPopupEntrega()">&times;</span>
+                <h2>Detalhes da Entrega</h2>
+                <form id="delivery-form">
+                    <input type="text" id="nome" placeholder="Seu nome" required>
+                    <input type="text" id="endereco" placeholder="Endereço de entrega" required>
+                    <input type="text" id="telefone" placeholder="Telefone de contato" required>
+                    <textarea id="observacoes" placeholder="Observações (opcional)"></textarea>
+                    <button type="submit" onclick="enviarDetalhesEntrega()">Enviar Detalhes</button>
+                </form>
+            </div>
+        </div>
 
 </body>
 
