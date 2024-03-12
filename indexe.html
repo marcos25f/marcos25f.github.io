@@ -19,7 +19,7 @@
 
     <header class="l-header" id="header">
         <nav class="nav bd-container">
-            <a href="#" class="nav__logo">Lecos's Burguer</a>
+            <a href="#" class="nav__logo">Leco's Burger </a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
@@ -66,18 +66,23 @@
         <div class="menu__container bd-grid">
             <div class="menu__content">
                 <img src="assets/img/prato1.jpg" alt="Classico Lecos" class="menu__img">
-                <h3 class="menu__name">Classico Lecos</h3>
+                <h3 class="menu__name">Classico Leco</h3>
                 <span class="menu__detail">Hambúrguer de carne bovina grelhada, alface, tomate, cebola, picles e molho
                     especial da casa. Servido em pão brioche</span>
                 <span class="menu__price">R$22,90</span>
+     
+
                 <button class="button menu__button" onclick="adicionarAoCarrinho('Classico Lecos', 22.90)"><i
                         class='bx bx-cart-alt'></i></button>
+
+
+
             </div>
 
 
             <div class="menu__content">
                 <img src="assets/img/prato2.jpg" alt="Cheese Bacon Lecos" class="menu__img">
-                <h3 class="menu__name">Cheese Bacon Lecos</h3>
+                <h3 class="menu__name">Cheese Bacon Leco</h3>
                 <span class="menu__detail"> Delicioso hambúrguer de carne bovina, coberto com queijo cheddar derretido,
                     fatias crocantes de bacon, alface e tomate. Servido em pão brioche com molho barbecue.</span>
                 <span class="menu__preci">R$ 27,90</span>
@@ -98,7 +103,7 @@
 
             <div class="menu__content">
                 <img src="assets/img/prato4.jpg" alt="Firehouse Lecos" class="menu__img">
-                <h3 class="menu__name">Firehouse Lecos </h3>
+                <h3 class="menu__name">Firehouse Leco </h3>
                 <span class="menu__detail"> Hambúrguer de carne bovina picante, com jalapeños, queijo pepper jack,
                     alface, cebola roxa e nosso molho de pimenta caseiro. Servido em pão brioche. </span>
                 <span class="menu__preci">R$ 28,90</span>
@@ -289,6 +294,35 @@
             
                 // Inicializa o carrinho com uma mensagem de vazio
                 listarProdutos();
+function adicionarAoCarrinhoComContador(nome, preco) {
+    let produtoExiste = false;
+    for (let i = 0; i < produtos.length; i++) {
+        if (produtos[i].nome === nome) {
+            produtos[i].quantidade++;
+            produtoExiste = true;
+            break;
+        }
+    }
+    if (!produtoExiste) {
+        produtos.push({ nome, preco, quantidade: 1 });
+    }
+    total += preco;
+    listarProdutos();
+    atualizarTotal();
+}
+
+function removerProdutoComContador(index) {
+    let produto = produtos[index];
+    if (produto.quantidade > 1) {
+        produto.quantidade--;
+        total -= produto.preco;
+    } else {
+        total -= produto.preco;
+        produtos.splice(index, 1);
+    }
+    listarProdutos();
+    atualizarTotal();
+}
 
                 
             </script>
@@ -303,7 +337,7 @@
         <footer class="footer section bd-container">
             <div class="footer__container bd-grid">
                 <div class="footer__content">
-                    <a href="#" class="footer__logo">Lecos's Burguer</a>
+                    <a href="#" class="footer__logo">Leco's Burger </a>
                     <span class="footer__description">hamburgueria</span>
                     <div>
                         <a href="#" class="footer__social"><i class='bx bxl-facebook'></i></a>
@@ -329,7 +363,7 @@
                         <li>São Paulo - Brasil</li>
                         <li>Proximo ao centro</li>
                         <li>999 - 888 - 777</li>
-                        <li>Lecos's Burguer@gemail.com</li>
+                        <li>Leco'sBurger@gemail.com</li>
                     </ul>
                 </div>
             </div>
@@ -340,21 +374,6 @@
 
         <script src="https://unpkg.com/scrollreveal"></script>
         <script src="assets/js/main.js"></script>
-
-
-        <div id="delivery-popup" class="delivery-popup">
-            <div class="popup-content">
-                <span class="close-popup" onclick="fecharPopupEntrega()">&times;</span>
-                <h2>Detalhes da Entrega</h2>
-                <form id="delivery-form">
-                    <input type="text" id="nome" placeholder="Seu nome" required>
-                    <input type="text" id="endereco" placeholder="Endereço de entrega" required>
-                    <input type="text" id="telefone" placeholder="Telefone de contato" required>
-                    <textarea id="observacoes" placeholder="Observações (opcional)"></textarea>
-                    <button type="submit" onclick="enviarDetalhesEntrega()">Enviar Detalhes</button>
-                </form>
-            </div>
-        </div>
 
 </body>
 
