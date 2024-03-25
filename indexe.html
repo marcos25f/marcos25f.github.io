@@ -260,16 +260,32 @@
                     produtos.forEach((produto, index) => {
                         const item = document.createElement('li');
                         item.textContent = `${produto.nome} (R$ ${produto.preco.toFixed(2)} x ${produto.quantidade})`;
+                
+                        // Criação do botão com estilos inline
                         const botaoRemover = document.createElement('button');
                         botaoRemover.textContent = 'Remover';
                         botaoRemover.onclick = function () { removerProduto(index); };
+                
+                        // Aplicando estilos diretamente ao botão
+                        botaoRemover.style.backgroundColor = '#ff4444'; // Fundo vermelho
+                        botaoRemover.style.color = 'white'; // Texto branco
+                        botaoRemover.style.border = 'none'; // Sem borda
+                        botaoRemover.style.padding = '3x 3px'; // Espaçamento interno
+                        botaoRemover.style.marginLeft = '3px'; // Margem à esquerda
+                        botaoRemover.style.cursor = 'pointer'; // Cursor em forma de mão quando passa o mouse
+                        botaoRemover.style.borderRadius = '5px'; // Borda arredondada
+                
+                        botaoRemover.className = 'botao-remover';
+                        // Adiciona o botão de remover ao item da lista
                         item.appendChild(botaoRemover);
+                
+                        // Adiciona o item da lista à lista de produtos
                         listaProdutos.appendChild(item);
                     });
-            
+                
+                    // Mensagem de carrinho vazio
                     if(produtos.length === 0){
-                        listaProdutos.innerHTML =
-                        '<li>Seu carrinho está vazio. Adicione produtos!</li>';
+                        listaProdutos.innerHTML = '<li>Seu carrinho está vazio. Adicione produtos!</li>';
                     }
                 }
             

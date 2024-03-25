@@ -656,4 +656,19 @@ img{
   background-color: #0056b3;
 }
 
+/* Estilos para o botão remover */
+.botao-remover {
+  background-color: #ff4444; /* Vermelho */
+  color: white; /* Texto branco */
+  border: none; /* Sem borda */
+  padding: 5px 10px; /* Espaçamento interno */
+  margin-left: 10px; /* Margem à esquerda */
+  cursor: pointer; /* Mãozinha ao passar o mouse */
+  border-radius: 5px; /* Borda arredondada */
+}
 
+/* Classe para itens esgotados ou removidos */
+.esgotado {
+  text-decoration: line-through; /* Riscado */
+  color: #ccc; /* Cinza claro */
+}
