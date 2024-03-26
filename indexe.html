@@ -39,7 +39,7 @@
                <h2 style="color: orange;">Carrinho de Compras</h2>
                <ul id="lista-produtos"></ul>
                <p>Total: <span id="total">R$ 0,00</span></p>
-               
+                   <textarea id="observacoes-gerais" placeholder="Adicione observações gerais sobre seu pedido..." class="observacoes"></textarea>
                <button class="botao-carrinho" onclick="fecharMiniJanela()">
                 <i class='bx bx-x'></i> 
                </button>
@@ -293,9 +293,10 @@
                     adicionarProduto(nome, preco);
                     abrirMiniJanela();
                     alert(`${nome} foi adicionado ao carrinho!`);
-                }
+        ''    }
             
                 function finalizarPedido() {
+                    
                     if (produtos.length > 0) {
                         // Substitua esta linha pela sua lógica de finalização de pedido
                         alert('numero de protocolo enviado para seu celular ou Email');
@@ -339,6 +340,7 @@ function removerProdutoComContador(index) {
     listarProdutos();
     atualizarTotal();
 }
+
 
                 
             </script>
