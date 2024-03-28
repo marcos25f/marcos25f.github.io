@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="indexe.html">
+    <title>Pedido</title>
+</head>
+
+<body>
+    <h1>Informações do Pedido</h1>
+    <form id="meuFormulario">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required><br><br>
+        
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" required><br><br>
+        
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" required><br><br>
+        
+        <label for="complemento">Complemento do Endereço:</label>
+        <input type="text" id="complemento"><br><br>
+        
+        <button type="button" onclick="finalizarPedido()"><a href="indexe.html">Finalizar Pedido</a></button>
+    </form>
+
+    <div id="numeroPedido"></div>
+
+    <script>
+        function finalizarPedido() {
+            // Obter os valores dos campos do formulário
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const endereco = document.getElementById('endereco').value;
+            const complemento = document.getElementById('complemento').value;
+
+            // Lógica de processamento dos dados...
+
+            // Gerar número de pedido randômico
+            const numeroPedido = gerarNumeroPedido();
+            
+            // Exibir número de pedido na página
+            document.getElementById('numeroPedido').innerText = `Seu número de pedido é: ${numeroPedido}`;
+        }
+
+        function gerarNumeroPedido() {
+            return Math.floor(Math.random() * 1000000);
+        }
+
+       
+    </script>
+</body>
+
+</html>

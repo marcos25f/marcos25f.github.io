@@ -701,3 +701,24 @@ button.button {
 button.button:hover {
     background-color: #0056b3;
 }
+.alerta {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.alerta-sucesso {
+    background-color: lightgreen;
+    color: green;
+}
+
+.alerta-erro {
+    background-color: lightcoral;
+    color: red;
+}
+
+.alerta-info {
+    background-color: lightblue;
+    color: blue;
+}

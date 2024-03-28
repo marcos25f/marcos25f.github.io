@@ -43,9 +43,9 @@
                <button class="botao-carrinho" onclick="fecharMiniJanela()">
                 <i class='bx bx-x'></i> 
                </button>
-               <button class="botao-carrinho" onclick="finalizarPedido('indexe.html')">
-                <i class='bx bx-cart-alt'></i>
-               </button>
+               <a href="pedido.html"><button class="botao-carrinho" onclick="finalizarPedido('pedido.html')">
+                <i class='bx bx-cart-alt'></i></a>
+               </button></a>
               
            </div>
            </div>
@@ -63,6 +63,7 @@
 
     <section id="menu" class="menu section bd-container">
         <h2 class="section-title">Pedidos</h2>
+        
         <div class="menu__container bd-grid">
             <div class="menu__content">
                 <img src="assets/img/prato1.jpg" alt="Classico Lecos" class="menu__img">
@@ -70,11 +71,8 @@
                 <span class="menu__detail">Hambúrguer de carne bovina grelhada, alface, tomate, cebola, picles e molho
                     especial da casa. Servido em pão brioche</span>
                 <span class="menu__price">R$22,90</span>
-     
-
                 <button class="button menu__button" onclick="adicionarAoCarrinho('Classico Lecos', 22.90)"><i
                         class='bx bx-cart-alt'></i></button>
-
 
 
             </div>
@@ -88,6 +86,8 @@
                 <span class="menu__preci">R$ 27,90</span>
                 <button class="button menu__button" onclick="adicionarAoCarrinho('Cheese Bacon Lecos', 27.90)"><i
                         class='bx bx-cart-alt'></i></button>
+
+
             </div>
 
             <div class="menu__content">
@@ -341,8 +341,40 @@ function removerProdutoComContador(index) {
     atualizarTotal();
 }
 
+function adicionarAoCarrinho(nome, preco) {
+    adicionarProduto(nome, preco);
+    abrirMiniJanela();
 
-                
+    // Adicionando estilo ao alerta
+    let alerta = document.createElement("div");
+    alerta.textContent = `${nome} foi adicionado ao carrinho!`;
+    alerta.classList.add("alerta", "alerta-sucesso");
+    
+    // Adicionando o alerta à página
+    document.body.appendChild(alerta);
+
+    // Removendo o alerta após alguns segundos (opcional)
+    setTimeout(() => {
+        alerta.remove();
+    }, 3000);
+}
+
+function finalizarPedido(paginaDestino) {
+    if (produtos.length > 0) {
+        // Substitua esta linha pela sua lógica de finalização de pedido
+        alert('Número de protocolo enviado para seu celular ou Email');
+        produtos = [];
+        total = 0;
+        listarProdutos();
+        atualizarTotal();
+
+        // Redirecionar o usuário para a página de destino
+        window.location.href = pedido.html;
+    } else {
+        alert('Adicione algum produto ao carrinho antes de finalizar o pedido.');
+    }
+}           
+     
             </script>
             
            
