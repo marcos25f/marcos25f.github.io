@@ -28,24 +28,39 @@
         <button type="button" onclick="finalizarPedido()"><a href="indexe.html">Finalizar Pedido</a></button>
     </form>
 
+<div id="barraCarregamento" style="display: none;">
+    <p>Processando número de pedido...</p>
+    <progress></progress>
+</div>
     <div id="numeroPedido"></div>
 
     <script>
         function finalizarPedido() {
-            // Obter os valores dos campos do formulário
-            const nome = document.getElementById('nome').value;
-            const telefone = document.getElementById('telefone').value;
-            const endereco = document.getElementById('endereco').value;
-            const complemento = document.getElementById('complemento').value;
+  const nome = document.getElementById('nome').value;
+    const telefone = document.getElementById('telefone').value;
+    const endereco = document.getElementById('endereco').value;
+    const complemento = document.getElementById('complemento').value;
 
-            // Lógica de processamento dos dados...
+    if (nome === '' || telefone === '' || endereco === '') {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        return;
+    }
 
-            // Gerar número de pedido randômico
-            const numeroPedido = gerarNumeroPedido();
-            
-            // Exibir número de pedido na página
-            document.getElementById('numeroPedido').innerText = `Seu número de pedido é: ${numeroPedido}`;
-        }
+    // Exibir barra de carregamento e esconder formulário
+    document.getElementById('barraCarregamento').style.display = 'block';
+    document.getElementById('meuFormulario').style.display = 'none';
+
+    // Simular um processamento demorado (1 segundo neste exemplo)
+    setTimeout(() => {
+        const numeroPedido = gerarNumeroPedido();
+        document.getElementById('numeroPedido').innerText = `Seu número de pedido é: ${numeroPedido}`;
+        
+        // Esconder barra de carregamento e mostrar número de pedido
+        document.getElementById('barraCarregamento').style.display = 'none';
+        document.getElementById('numeroPedido').style.display = 'block';
+    }, 1000); // Tempo de espera simulado de 1 segundo
+}
+        
 
         function gerarNumeroPedido() {
             return Math.floor(Math.random() * 1000000);

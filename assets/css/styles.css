@@ -591,7 +591,7 @@ img{
   padding: 20px;
   max-height: 100vh; /* Define a altura máxima do carrinho até a altura da tela */
   overflow-y: auto; /* Adiciona uma barra de rolagem vertical se o conteúdo do carrinho for maior do que a tela */
-  background-color: rgb(77, 37, 37); /* Adiciona a cor preta ao fundo da aba Carrinho */
+  background-color: #4d2525; /* Adiciona a cor preta ao fundo da aba Carrinho */
   color: white; /* Define a cor do texto como branco para contrastar com o fundo preto */
   font-size: 1.20em; /* Exemplo de tamanho da fonte aumentado */
 }
@@ -721,4 +721,31 @@ button.button:hover {
 .alerta-info {
     background-color: lightblue;
     color: blue;
+}
+.ingredientes-container {
+  display: flex; /* Utiliza flexbox para o layout dos ingredientes */
+  flex-wrap: wrap; /* Permite que os itens se ajustem em linhas múltiplas conforme o espaço disponível */
+  gap: 10px; /* Espaçamento entre os itens */
+  padding: 10px; /* Espaçamento interno do contêiner */
+  border: 1px solid #4d2525; /* Borda para o contêiner de ingredientes */
+}
+
+.extra-ingredient + label {
+  flex: 1 1 100px; /* Cada label ocupa o mínimo de 100px e cresce para ocupar espaço disponível */
+  padding: 5px; /* Espaçamento interno para os labels */
+  background-color:#4d2525 ; /* Cor de fundo para cada ingrediente */
+  border: 1px solid #4d2525; /* Borda para cada label */
+  border-radius: 3px; /* Arredondamento das bordas */
+}
+
+.extra-ingredient:checked + label {
+  background-color: #4d2525; /* Altera a cor de fundo quando o checkbox está selecionado */
+  font-weight: bold; /* Aumenta a espessura da fonte para indicar seleção */
+}
+
+/* Se o contêiner mudar de tamanho, os ingredientes devem ajustar-se ao novo espaço */
+@media (min-width: 600px) {
+  .extra-ingredient + label {
+    flex: 1 1 150px; /* Em telas maiores, os labels podem começar a partir de 150px */
+  }
 }

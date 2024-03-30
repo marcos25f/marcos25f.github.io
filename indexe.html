@@ -103,11 +103,11 @@
 
             <div class="menu__content">
                 <img src="assets/img/prato4.jpg" alt="Firehouse Lecos" class="menu__img">
-                <h3 class="menu__name">Firehouse Leco </h3>
-                <span class="menu__detail"> Hambúrguer de carne bovina picante, com jalapeños, queijo pepper jack,
-                    alface, cebola roxa e nosso molho de pimenta caseiro. Servido em pão brioche. </span>
-                <span class="menu__preci">R$ 28,90</span>
-                <button class="button menu__button" onclick="adicionarAoCarrinho('Firehouse Lecos', 28.90)"><i
+                <h3 class="menu__name">Firehouse Leco</h3>
+                <span class="menu__detail">Hambúrguer de carne bovina picante, com jalapeños, queijo pepper jack,
+                    alface, cebola roxa e nosso molho de pimenta caseiro. Servido em pão brioche.</span>
+                <span class="menu__preci">R$28,90</span>
+                <button class="button menu__button" onclick="adicionarAoCarrinho('Firehouse Lecos',28.90 )"><i
                         class='bx bx-cart-alt'></i></button>
             </div>
 
@@ -178,15 +178,17 @@
             </div>
 
 
+            
+
             <div class="menu__content">
-                <img src="assets/img/prato12.jpg" alt="Brownie de Chocolate " class="menu__img">
-                <h3 class="menu__name">Brownie de Chocolate </h3>
-                <span class="menu__detail"> Com nozes, servido quente com sorvete de baunilha.</span>
+                <img src="assets/img/prato12.jpg" alt="Brownie de Chocolate" class="menu__img">
+                <h3 class="menu__name">Brownie de Chocolate</h3>
+                <span class="menu__detail"><Com nozes, servido quente com sorvete de baunilha./span>
                 <span class="menu__preci">16,90</span>
-                <button class="button menu__button" onclick="adicionarAoCarrinho('Brownie de Chocolate', 16.90)"><i
+                <button class="button menu__button"
+                    onclick="adicionarAoCarrinho('Brownie de Chocolate', 16.90)"><i
                         class='bx bx-cart-alt'></i></button>
             </div>
-
             <div class="menu__content">
                 <img src="assets/img/prato13.jpg" alt="Cheesecake de Frutas Vermelhas " class="menu__img">
                 <h3 class="menu__name">Cheesecake de Frutas Vermelhas</h3>
@@ -219,22 +221,7 @@
                     document.getElementById('carrinho').style.display = 'none';
                 }
             
-                function adicionarProduto(nome, preco) {
-                    let produtoExiste = false;
-                    for (let i = 0; i < produtos.length; i++) {
-                        if (produtos[i].nome === nome) {
-                            produtos[i].quantidade++;
-                            produtoExiste = true;
-                            break;
-                        }
-                    }
-                    if (!produtoExiste) {
-                        produtos.push({ nome, preco, quantidade: 1 });
-                    }
-                    total += preco;
-                    listarProdutos();
-                    atualizarTotal();
-                }
+               
             
                 function removerProduto(index) {
                     let produto = produtos[index];
@@ -299,7 +286,7 @@
                     
                     if (produtos.length > 0) {
                         // Substitua esta linha pela sua lógica de finalização de pedido
-                        alert('numero de protocolo enviado para seu celular ou Email');
+                        
                         produtos = [];
                         total = 0;
                         listarProdutos();
@@ -362,7 +349,7 @@ function adicionarAoCarrinho(nome, preco) {
 function finalizarPedido(paginaDestino) {
     if (produtos.length > 0) {
         // Substitua esta linha pela sua lógica de finalização de pedido
-        alert('Número de protocolo enviado para seu celular ou Email');
+        
         produtos = [];
         total = 0;
         listarProdutos();
@@ -374,7 +361,183 @@ function finalizarPedido(paginaDestino) {
         alert('Adicione algum produto ao carrinho antes de finalizar o pedido.');
     }
 }           
+     function obterIngredientesExtras(itemName) {
+         // Defina os ingredientes adicionais e seus preços
+         const ingredientes = {
+             "Classico Leco": [
+                 { nome: "Cobertura Extra de Queijo", preco: 3.00 },
+                 { nome: "Bacon Adicional", preco: 4.00 },
+                 { nome: "Molho Especial", preco:  2.50 },
+                 { nome: "Guarnição de Picles", preco: 1.50 },
+                 { nome: "Salada Extra", preco:  2.00 },
+
+             ],
+             "Cheese Bacon Leco": [
+                 { nome: "Cobertura Extra de Queijo", preco: 3.00 },
+                 { nome: "Bacon Adicional", preco: 4.00 },
+                 { nome: "Molho Especial", preco:  2.50 },
+                 { nome: "Guarnição de Picles", preco: 1.50 },
+                 { nome: "Salada Extra", preco:  2.00 },
+                 ],
+                 "Veggie Delight": [
+                 { nome: "Queijo Cheddar Vegano", preco: 3.00 },
+                 { nome: "Bacon Vegetariano", preco: 4.00 },
+                 { nome: "Pimentão Assado", preco: 1.50 },
+                 { nome: "Cogumelos Grelhados", preco:  2.50 },
+                 { nome: "Pepino em Conserva", preco:  1.00 },
+                 ],
+                 "Firehouse Leco": [
+                 { nome: "Bacon", preco: 4.00 },
+                 { nome: "tomate", preco: 1.00 },
+                 { nome: "Maionese Artesanal", preco: 2.00 },
+                 { nome: "Cebola Caramelizada", preco:  2.50 },
+                 { nome: "Queijo Gorgonzola", preco:  3.00 },
+                 ],
+                 "Batatas Fritas": [
+                 { nome: "Queijo Parmesão Ralado", preco: 2.00 },
+                 { nome: "Guacamole", preco: 3.50 },
+                 { nome: "Chili com Carne", preco: 4.00 },
+                 { nome: "Sour Cream", preco:  2.50 },
+                 { nome: "Cebolinha Picada", preco:  1.00 },
+                 ],
+                 "Onion Rings": [
+                 { nome: "Molho Ranch", preco: 2.50 },
+                 { nome: "Molho Barbecue", preco: 2.50 },
+                 { nome: "Aioli de Alho", preco: 3.00 },
+                 { nome: "Queijo Cheddar Derretido", preco:  4.00 },
+                 { nome: "Pedaços de Bacon", preco:  3.50 },
+                 ],
+                 "Batata Doce Frita": [
+                 { nome: "Molho de Creme de Alho", preco: 2.50 },
+                 { nome: "Queijo Gorgonzola Derretido", preco: 3.00 },
+                 { nome: "Bacon Crocante", preco: 4.00 },
+                 { nome: "Cebolinha Picada", preco:  1.50 },
+                 { nome: "Molho de Chipotle", preco:  2.00 },
+                 ],
+                 "Refrigerante": [
+                 { nome: "Coca-Cola(lata)", preco: 5.00 },
+                 { nome: "Coca-Cola(2 litros)", preco: 8.00 },
+                 { nome: "Guaraná Antarctica(lata)", preco: 4.50 },
+                 { nome: "Guaraná Antarctica(2 litros)", preco:  7.50 },
+                 { nome: "Fanta Laranja(lata)", preco:  4.00 },
+                 ],
+                 "Shake de Oreo": [
+                 { nome: "Chantilly", preco: 5.00 },
+                 { nome: "Calda de Chocolate", preco: 3.00 },
+                 { nome: "Mini Oreos", preco: 2.50 },
+                 { nome: "Raspas de Chocolate", preco:  5.00 },
+                 { nome: "Cookies Triturados", preco:  3.50 },
+                 ],
+                 "Suco Natural": [
+                 { nome: "Suco de Laranja", preco: 5.00 },
+                 { nome: "Suco de Abacaxi", preco: 6.00 },
+                 { nome: "Suco de Melancia", preco: 5.00 },
+                 { nome: "Suco de Mamão", preco:  4.50 },
+                 { nome: "Suco de Maracujá", preco:  5.00 },
+                 ],
+                 "Brownie de Chocolate": [
+                 { nome: "Calda de chocolate", preco: 3.00 },
+                 { nome: "Nozes picadas", preco: 4.00 },
+                 { nome: "Morangos frescos", preco: 5.00 },
+                 { nome: "Chantilly", preco:  3.00 },
+                 { nome: "Uma xícara de café expresso", preco:  4.00 },
+                 ],
+                 "Cheesecake de Frutas Vermelhas": [
+                 { nome: "Calda de frutas vermelhas", preco: 5.00 },
+                 { nome: "Folhas de hortelã frescas", preco: 3.00 },
+                 { nome: "Suspiros", preco: 4.00 },
+                 { nome: "Geléia de framboesa", preco:  6.00 },
+                 { nome: "Amêndoas laminadas", preco:  5.00 },
+                 ],
+                 "Sundae Lecos": [
+                 { nome: "Granulado de chocolate", preco: 3.00 },
+                 { nome: "Chantilly", preco: 4.00 },
+                 { nome: "Morangos frescos", preco: 4.00 },
+                 { nome: "Amendoim torrado", preco:  3.00 },
+                 { nome: "Cobertura de caramelo", preco:  5.00 },
+                 ],
+
+             
+
+
+             // Adicione mais itens no menu com ingredientes extras aqui
+         };
      
+         // Elemento div que vai conter os checkboxes
+         const div = document.createElement('div');
+     
+         // Verifica se existem ingredientes extras definidos para o item
+         if (ingredientes[itemName]) {
+             ingredientes[itemName].forEach(ingrediente => {
+                 // Cria o checkbox para o ingrediente extra
+                 const checkbox = document.createElement('input');
+                 checkbox.type = 'checkbox';
+                 checkbox.id = ingrediente.nome + itemName;
+                 checkbox.className = "extra-ingredient";
+                 checkbox.dataset.preco = ingrediente.preco;
+             
+                 // Cria o label para o checkbox
+                 const label = document.createElement('label');
+                 label.htmlFor = ingrediente.nome + itemName;
+                 label.textContent = `${ingrediente.nome} (+R$${ingrediente.preco.toFixed(2)})`;
+     
+                 // Adiciona o checkbox e o label à div
+                 div.appendChild(checkbox);
+                 div.appendChild(label);
+                 div.appendChild(document.createElement('br'));
+             });
+         }
+     
+         return div;
+     }
+     
+     function adicionarAoCarrinho(nome, precoBase) {
+         const ingredientesExtras = document.querySelectorAll('.extra-ingredient:checked');
+         let ingredientesAdicionados = [];
+         let preco = precoBase;
+     
+         // Calcula o preço final com ingredientes extras
+         ingredientesExtras.forEach(checkbox => {
+             preco += parseFloat(checkbox.dataset.preco);
+             ingredientesAdicionados.push(checkbox.id);
+         });
+     
+         adicionarProduto(nome, preco, ingredientesAdicionados);
+          function adicionarProduto(nome, preco) {
+                    let produtoExiste = false;
+                    for (let i = 0; i < produtos.length; i++) {
+                        if (produtos[i].nome === nome) {
+                            produtos[i].quantidade++;
+                            produtoExiste = true;
+                            break;
+                        }
+                    }
+                    if (!produtoExiste) {
+                        produtos.push({ nome, preco, ingredientesAdicionados,quantidade: 1 });
+                    }
+                    total += preco;
+                    listarProdutos();
+                    atualizarTotal();
+                }
+     }
+     
+     function adicionarProduto(nome, preco, ingredientesAdicionados) {
+         // Aqui vai a sua lógica para adicionar o produto ao carrinho
+         // Incluindo o nome dos ingredientes extras escolhidos e o preço atualizado
+     }
+     
+     // Função que adiciona a escolha de ingredientes no menu
+     function adicionarEscolhaDeIngredientes() {
+         const menuItems = document.querySelectorAll('.menu__content');
+         menuItems.forEach(menuItem => {
+             const name = menuItem.querySelector('.menu__name').textContent;
+             const ingredientsDiv = obterIngredientesExtras(name);
+             menuItem.appendChild(ingredientsDiv);
+         });
+     }
+     
+     // Chame esta função quando a página carregar para adicionar os ingredientes
+     adicionarEscolhaDeIngredientes();
             </script>
             
            
