@@ -30,19 +30,24 @@
                 </ul>
             </div>
 
-            <div id="carrinho" class="carrinho-popup">
-                <h2 style="color: orange;">Carrinho de Compras</h2>
-                <ul id="lista-produtos"></ul>
-                <p>Total: <span id="total">R$ 0,00</span></p>
-                    <textarea id="observacoes-gerais" placeholder="Adicione observações gerais sobre seu pedido..." class="observacoes"></textarea>
-                <button class="botao-carrinho" onclick="fecharMiniJanela()">
-                 <i class='bx bx-x'></i> 
-                </button>
-                <a href="pedido.html"><button class="botao-carrinho" onclick="finalizarPedido('pedido.html')">
-                 <i class='bx bx-cart-alt'></i></a>
-                </button></a>
-               
-            </div>
+            <div class="menu__detail">
+                       
+                <button class="button menu__button" onclick="abrirMiniJanela()"><i
+                   class='bx bx-cart-alt'></i></button>
+                
+               <div id="carrinho" class="carrinho-popup">
+               <h2 style="color: orange;">Carrinho de Compras</h2>
+               <ul id="lista-produtos"></ul>
+               <p>Total: <span id="total">R$ 0,00</span></p>
+                <textarea id="observacoes-gerais" placeholder="Adicione observações gerais sobre seu pedido..." class="observacoes"></textarea>
+               <button class="botao-carrinho" onclick="fecharMiniJanela()">
+                <i class='bx bx-x'></i> 
+               </button>
+               <button class="botao-carrinho" onclick="finalizarPedido('indexe.html')">
+                <i class='bx bx-cart-alt'></i>
+               </button>
+              
+           </div>
            </div>
 
 
@@ -251,7 +256,7 @@
                function listarProdutos() {
                    const listaProdutos = document.getElementById('lista-produtos');
                    listaProdutos.innerHTML = '';
-                   
+               
                    produtos.forEach((produto, index) => {
                        const item = document.createElement('li');
                        item.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)} x `;
@@ -259,7 +264,7 @@
                        // Botão de diminuir quantidade
                        const botaoMenos = document.createElement('button');
                        botaoMenos.textContent = '-';
-                       botaoMenos.onclick = function () { removerProdutoComContador(index); };
+                       botaoMenos.onclick = function () { removerProduto(index); };
                
                        // Span para exibir a quantidade
                        const spanQuantidade = document.createElement('span');
@@ -268,16 +273,21 @@
                        // Botão de aumentar quantidade
                        const botaoMais = document.createElement('button');
                        botaoMais.textContent = '+';
-                       botaoMais.onclick = function () { adicionarAoCarrinhoComContador(produto.nome, produto.preco); };
+                       botaoMais.onclick = function () { adicionarAoCarrinho(produto.nome, produto.preco); };
                
-                       // Estilizar botões como preferir
-                       botaoMenos.className = 'botao-alterar';
-                       botaoMais.className = 'botao-alterar';
+                       // Botão de adicionar pedido
+                       const botaoAdicionarPedido = document.createElement('button');
+                       botaoAdicionarPedido.textContent = 'Adicionar Complementos ';
+                       botaoAdicionarPedido.onclick = function() { 
+                           /* Adicione aqui a lógica para adicionar o pedido */
+                           alert(`Pedido de ${produto.nome} foi adicionado!`);
+                       };
                
                        // Adiciona os elementos ao item da lista
                        item.appendChild(botaoMenos);
                        item.appendChild(spanQuantidade);
                        item.appendChild(botaoMais);
+                       item.appendChild(botaoAdicionarPedido); // Adiciona o novo botão ao item da lista
                
                        // Adiciona o item da lista à lista de produtos
                        listaProdutos.appendChild(item);
@@ -288,6 +298,7 @@
                        listaProdutos.innerHTML = '<li>Seu carrinho está vazio. Adicione produtos!</li>';
                    }
                }
+                   
             
             function adicionarAoCarrinho(nome, preco) {
                 adicionarProduto(nome, preco);

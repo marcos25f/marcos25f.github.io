@@ -873,3 +873,18 @@ button.button:hover {
 .botao-alterar:hover {
     background-color: #e6b800;
 }
+button {
+  margin-right: 5px; /* Adiciona margem à direita dos botões */
+  display: inline-block; /* Permite que os botões fiquem na mesma linha */
+  padding: 8px 12px; /* Adiciona espaçamento interno ao botão */
+  background-color: #3498db; /* Cor de fundo */
+  color: #ffffff; /* Cor do texto */
+  border: 1px solid #3498db; /* Borda do botão */
+  border-radius: 5px; /* Borda arredondada */
+  cursor: pointer; /* Altera o cursor ao passar por cima do botão */
+}
+
+button:hover {
+  background-color: #2980b9; /* Cor de fundo ao passar o mouse por cima */
+  border-color: #2980b9; /* Cor da borda ao passar o mouse por cima */
+}
