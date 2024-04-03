@@ -19,13 +19,13 @@
 
     <header class="l-header" id="header">
         <nav class="nav bd-container">
-            <a href="#" class="nav__logo">Leco's Burger </a>
+            <a href="index.html" class="nav__logo">Leco's Burger </a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="index.html" class="nav__link">Casa</a></li>
+                    <li class="nav__item"><a href="index.html#home" class="nav__link">Casa</a></li>
                     <li class="nav__item"><a href="indexe.html" class="nav__link active-link">Pedidos</a></li>
-                    <li class="nav__item"><a href="index.html" class="nav__link">contatos</a></li>
+                    <li class="nav__item"><a href="index.html#contact" class="nav__link">contatos</a></li>
                     <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
                 </ul>
             </div>
@@ -46,18 +46,91 @@
                     <button class="botao-carrinho" onclick="finalizarPedido('indexe.html')">
                         <i class='bx bx-cart-alt'></i>
                     </button>
-  
+
                 </div>
-            </div>
+                <div id="modalComplemento" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Escolha seu complemento</h2>
+                        <!-- Conteúdo do Modal -->
+                        <style class="modal-content">
+                            body {
+    font-family: Arial, sans-serif;
+    
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+                        </style>
+                       <form action="/caminho_para_o_servidor" method="POST">
+                           <label ><img src="assets/img/prato11.jpg" alt="prato"></label>
+                            <label for="text">complemento para sua bebida</label>
+                           
+                           <label for="email">E-mail:</label>
+                           <input type="email" id="email" name="email" required><br><br>
+                       
+                           <label for="senha">Senha:</label>
+                           <input type="password" id="senha" name="senha" required><br><br>
+                       
+                           <label for="confirmar_senha">Confirmar Senha:</label>
+                           <input type="password" id="confirmar_senha" name="confirmar_senha" required><br><br>
+                       
+                           <input type="submit" value="Cadastrar">
+                       </form>
+                    </div>
+                </div>
 
 
 
 
 
 
-            <div class="nav__toggle" id="nav-toggle">
-                <i class='bx bx-menu'></i>
-            </div>
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu'></i>
+                </div>
         </nav>
     </header>
 
@@ -70,15 +143,10 @@
                 <span class="menu__detail">Hambúrguer de carne bovina grelhada, alface, tomate, cebola, picles e molho
                     especial da casa. Servido em pão brioche</span>
                 <span class="menu__price">R$22,90</span>
-
-
                 <button class="button menu__button" onclick="adicionarAoCarrinho('Classico Lecos', 22.90)"><i
-                        class='bx bx-cart-alt'></i></button>
-
-
+                    class='bx bx-cart-alt'></i></button>
 
             </div>
-
 
             <div class="menu__content">
                 <img src="assets/img/prato2.jpg" alt="Cheese Bacon Lecos" class="menu__img">
@@ -254,60 +322,68 @@
                 }
 
                 function listarProdutos() {
-    const listaProdutos = document.getElementById('lista-produtos');
-    listaProdutos.innerHTML = '';
+                    const listaProdutos = document.getElementById('lista-produtos');
+                    listaProdutos.innerHTML = '';
 
-    produtos.forEach((produto, index) => {
-        // Contêiner principal para cada produto no carrinho
-        const itemContainer = document.createElement('div');
-        itemContainer.className = 'produto-item';
+                    produtos.forEach((produto, index) => {
+                        const itemLinha = document.createElement('div');
+                        itemLinha.classList.add('carrinho-item');
 
-        // Parte de detalhes do produto
-        const detalhesProduto = document.createElement('div');
-        detalhesProduto.className = 'detalhes-produto';
-        detalhesProduto.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)} x ${produto.quantidade}`;
+                        const nomeProduto = document.createElement('span');
+                        nomeProduto.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
+                        nomeProduto.classList.add('carrinho-item-nome');
+                        itemLinha.appendChild(nomeProduto);
 
-        // Contêiner para os botões
-        const botoesContainer = document.createElement('div');
-        botoesContainer.className = 'botoes-container';
+                        const botaoMenos = document.createElement('button');
+                        botaoMenos.textContent = '-';
+                        botaoMenos.onclick = function () { removerProduto(index); };
+                        itemLinha.appendChild(botaoMenos);
 
-        // Botão de diminuir quantidade
-        const botaoMenos = document.createElement('button');
-        botaoMenos.textContent = '-';
-        botaoMenos.onclick = function () { removerProduto(index); };
-        
-        // Botão de aumentar quantidade
-        const botaoMais = document.createElement('button');
-        botaoMais.textContent = '+';
-        botaoMais.onclick = function () { adicionarAoCarrinho(produto.nome, produto.preco); };
+                        const quantidadeProduto = document.createElement('span');
+                        quantidadeProduto.textContent = ` ${produto.quantidade}`;
+                        quantidadeProduto.classList.add('carrinho-item-quantidade');
+                        itemLinha.appendChild(quantidadeProduto);
 
-        // Botão de adicionar pedido
-        const botaoAdicionarPedido = document.createElement('button');
-        botaoAdicionarPedido.textContent = 'Adicionar Complementos ';
-        botaoAdicionarPedido.onclick = function () {
-            /* Adiciona lógica para adicionar pedido */
-        };
+                        const botaoMais = document.createElement('button');
+                        botaoMais.textContent = '+';
+                        botaoMais.onclick = function () { adicionarAoCarrinho(produto.nome, produto.preco); };
+                        itemLinha.appendChild(botaoMais);
 
-        // Adiciona os botões ao contêiner de botões
-        botoesContainer.appendChild(botaoMenos);
-        botoesContainer.appendChild(botaoMais);
-        botoesContainer.appendChild(botaoAdicionarPedido);
+                        listaProdutos.appendChild(itemLinha);
 
-        // Adiciona detalhes e botões ao item do contêiner
-        itemContainer.appendChild(detalhesProduto);
-        itemContainer.appendChild(botoesContainer);
+                        // Adicionar botão "Adicionar Complemento" após cada item do carrinho
+                        const botaoComplemento = document.createElement('button');
+                        botaoComplemento.textContent = 'Adicionar Complemento';
+                        botaoComplemento.classList.add('carrinho-item-complemento');
+                        botaoComplemento.onclick = function () {
+                            abrirMenudeComplemento()
+                        };
 
-        // Adiciona o contêiner de cada item à lista do carrinho
-        listaProdutos.appendChild(itemContainer);
-    });
+                        listaProdutos.appendChild(botaoComplemento);
+                    });
 
-    // Mensagem de carrinho vazio
-    if (produtos.length === 0) {
-        listaProdutos.innerHTML = '<li>Seu carrinho está vazio. Adicione produtos!</li>';
-    }
-}
+                    if (produtos.length === 0) {
+                        listaProdutos.innerHTML = '<li>Seu carrinho está vazio. Adicione produtos!</li>';
+                    }
+                }
+                function abrirMenudeComplemento() {
+                    var modal = document.getElementById("modalComplemento");
+                    modal.style.display = "block";
+                }
 
+                // Quando o usuário clica em (x), feche a janela modal
+                document.getElementsByClassName("close")[0].onclick = function () {
+                    var modal = document.getElementById("modalComplemento");
+                    modal.style.display = "none";
+                }
 
+                // Quando o usuário clica fora da janela modal, feche-a
+                window.onclick = function (event) {
+                    var modal = document.getElementById("modalComplemento");
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
                 function adicionarAoCarrinho(nome, preco) {
                     adicionarProduto(nome, preco);
                     abrirMiniJanela();
@@ -358,7 +434,35 @@
                     atualizarTotal();
                 }
 
-              
+                function abrirSobreposicao() {
+                    // Cria a div de sobreposição
+                    const sobreposicao = document.createElement('div');
+                    sobreposicao.className = 'sobreposicao';
+
+                    // Conteúdo da sobreposição
+                    const conteudoSobreposicao = document.createElement('div');
+                    conteudoSobreposicao.className = 'conteudo-sobreposicao';
+                    conteudoSobreposicao.innerHTML = `
+      <h2>Complemento</h2>
+      <p>Selecione o complemento desejado:</p>
+      <!-- Aqui você pode adicionar opções de complementos -->
+    `;
+
+                    // Botão para fechar a sobreposição
+                    const botaoFechar = document.createElement('button');
+                    botaoFechar.textContent = 'Fechar';
+                    botaoFechar.onclick = function () { fecharSobreposicao(sobreposicao); };
+
+                    conteudoSobreposicao.appendChild(botaoFechar);
+                    sobreposicao.appendChild(conteudoSobreposicao);
+
+                    // Adiciona a sobreposição ao corpo do documento
+                    document.body.appendChild(sobreposicao);
+                }
+
+                function fecharSobreposicao(sobreposicao) {
+                    sobreposicao.remove();
+                }              
             </script>
 
 
