@@ -31,24 +31,24 @@
             </div>
 
             <div class="menu__detail">
-                       
-                <button class="button menu__button" onclick="abrirMiniJanela()"><i
-                   class='bx bx-cart-alt'></i></button>
-                
-               <div id="carrinho" class="carrinho-popup">
-               <h2 style="color: orange;">Carrinho de Compras</h2>
-               <ul id="lista-produtos"></ul>
-               <p>Total: <span id="total">R$ 0,00</span></p>
-                <textarea id="observacoes-gerais" placeholder="Adicione observações gerais sobre seu pedido..." class="observacoes"></textarea>
-               <button class="botao-carrinho" onclick="fecharMiniJanela()">
-                <i class='bx bx-x'></i> 
-               </button>
-               <button class="botao-carrinho" onclick="finalizarPedido('indexe.html')">
-                <i class='bx bx-cart-alt'></i>
-               </button>
-              
-           </div>
-           </div>
+
+                <button class="button menu__button" onclick="abrirMiniJanela()"><i class='bx bx-cart-alt'></i></button>
+
+                <div id="carrinho" class="carrinho-popup">
+                    <h2 style="color: orange;">Carrinho de Compras</h2>
+                    <ul id="lista-produtos"></ul>
+                    <p>Total: <span id="total">R$ 0,00</span></p>
+                    <textarea id="observacoes-gerais" placeholder="Adicione observações gerais sobre seu pedido..."
+                        class="observacoes"></textarea>
+                    <button class="botao-carrinho" onclick="fecharMiniJanela()">
+                        <i class='bx bx-x'></i>
+                    </button>
+                    <button class="botao-carrinho" onclick="finalizarPedido('indexe.html')">
+                        <i class='bx bx-cart-alt'></i>
+                    </button>
+  
+                </div>
+            </div>
 
 
 
@@ -70,7 +70,7 @@
                 <span class="menu__detail">Hambúrguer de carne bovina grelhada, alface, tomate, cebola, picles e molho
                     especial da casa. Servido em pão brioche</span>
                 <span class="menu__price">R$22,90</span>
-     
+
 
                 <button class="button menu__button" onclick="adicionarAoCarrinho('Classico Lecos', 22.90)"><i
                         class='bx bx-cart-alt'></i></button>
@@ -210,15 +210,15 @@
             <script>
                 let produtos = [];
                 let total = 0;
-            
+
                 function abrirMiniJanela() {
                     document.getElementById('carrinho').style.display = 'block';
                 }
-            
+
                 function fecharMiniJanela() {
                     document.getElementById('carrinho').style.display = 'none';
                 }
-            
+
                 function adicionarProduto(nome, preco) {
                     let produtoExiste = false;
                     for (let i = 0; i < produtos.length; i++) {
@@ -235,7 +235,7 @@
                     listarProdutos();
                     atualizarTotal();
                 }
-            
+
                 function removerProduto(index) {
                     let produto = produtos[index];
                     if (produto.quantidade > 1) {
@@ -248,142 +248,122 @@
                     listarProdutos();
                     atualizarTotal();
                 }
-            
+
                 function atualizarTotal() {
                     document.getElementById('total').textContent = `R$ ${total.toFixed(2)}`;
                 }
-            
-               function listarProdutos() {
-                   const listaProdutos = document.getElementById('lista-produtos');
-                   listaProdutos.innerHTML = '';
-               
-                   produtos.forEach((produto, index) => {
-                       const item = document.createElement('li');
-                       item.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)} x `;
-               
-                       // Botão de diminuir quantidade
-                       const botaoMenos = document.createElement('button');
-                       botaoMenos.textContent = '-';
-                       botaoMenos.onclick = function () { removerProduto(index); };
-               
-                       // Span para exibir a quantidade
-                       const spanQuantidade = document.createElement('span');
-                       spanQuantidade.textContent = produto.quantidade;
-               
-                       // Botão de aumentar quantidade
-                       const botaoMais = document.createElement('button');
-                       botaoMais.textContent = '+';
-                       botaoMais.onclick = function () { adicionarAoCarrinho(produto.nome, produto.preco); };
-               
-                       // Botão de adicionar pedido
-                       const botaoAdicionarPedido = document.createElement('button');
-                       botaoAdicionarPedido.textContent = 'Adicionar Complementos ';
-                       botaoAdicionarPedido.onclick = function() { 
-                           /* Adicione aqui a lógica para adicionar o pedido */
-                           alert(`Pedido de ${produto.nome} foi adicionado!`);
-                       };
-               
-                       // Adiciona os elementos ao item da lista
-                       item.appendChild(botaoMenos);
-                       item.appendChild(spanQuantidade);
-                       item.appendChild(botaoMais);
-                       item.appendChild(botaoAdicionarPedido); // Adiciona o novo botão ao item da lista
-               
-                       // Adiciona o item da lista à lista de produtos
-                       listaProdutos.appendChild(item);
-                   });
-               
-                   // Mensagem de carrinho vazio
-                   if(produtos.length === 0){
-                       listaProdutos.innerHTML = '<li>Seu carrinho está vazio. Adicione produtos!</li>';
-                   }
-               }
-                   
-            
-            function adicionarAoCarrinho(nome, preco) {
-                adicionarProduto(nome, preco);
-                abrirMiniJanela();
-                // alert(`${nome} foi adicionado ao carrinho!`); // Linha comentada, removendo o alerta
-            }
-               
-            function finalizarPedido() {
-                if (produtos.length > 0) {
-                    // Substitua esta linha pela sua lógica de finalização de pedido
-                    // alert('numero de protocolo enviado para seu celular ou Email'); // Linha comentada, removendo o alerta
-                    produtos = [];
-                    total = 0;
-                    listarProdutos();
-                    atualizarTotal();
-                } else {
-                    // alert('Adicione algum produto ao carrinho antes de finalizar o pedido.'); // Linha comentada, removendo o alerta
+
+                function listarProdutos() {
+    const listaProdutos = document.getElementById('lista-produtos');
+    listaProdutos.innerHTML = '';
+
+    produtos.forEach((produto, index) => {
+        // Contêiner principal para cada produto no carrinho
+        const itemContainer = document.createElement('div');
+        itemContainer.className = 'produto-item';
+
+        // Parte de detalhes do produto
+        const detalhesProduto = document.createElement('div');
+        detalhesProduto.className = 'detalhes-produto';
+        detalhesProduto.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)} x ${produto.quantidade}`;
+
+        // Contêiner para os botões
+        const botoesContainer = document.createElement('div');
+        botoesContainer.className = 'botoes-container';
+
+        // Botão de diminuir quantidade
+        const botaoMenos = document.createElement('button');
+        botaoMenos.textContent = '-';
+        botaoMenos.onclick = function () { removerProduto(index); };
+        
+        // Botão de aumentar quantidade
+        const botaoMais = document.createElement('button');
+        botaoMais.textContent = '+';
+        botaoMais.onclick = function () { adicionarAoCarrinho(produto.nome, produto.preco); };
+
+        // Botão de adicionar pedido
+        const botaoAdicionarPedido = document.createElement('button');
+        botaoAdicionarPedido.textContent = 'Adicionar Complementos ';
+        botaoAdicionarPedido.onclick = function () {
+            /* Adiciona lógica para adicionar pedido */
+        };
+
+        // Adiciona os botões ao contêiner de botões
+        botoesContainer.appendChild(botaoMenos);
+        botoesContainer.appendChild(botaoMais);
+        botoesContainer.appendChild(botaoAdicionarPedido);
+
+        // Adiciona detalhes e botões ao item do contêiner
+        itemContainer.appendChild(detalhesProduto);
+        itemContainer.appendChild(botoesContainer);
+
+        // Adiciona o contêiner de cada item à lista do carrinho
+        listaProdutos.appendChild(itemContainer);
+    });
+
+    // Mensagem de carrinho vazio
+    if (produtos.length === 0) {
+        listaProdutos.innerHTML = '<li>Seu carrinho está vazio. Adicione produtos!</li>';
+    }
+}
+
+
+                function adicionarAoCarrinho(nome, preco) {
+                    adicionarProduto(nome, preco);
+                    abrirMiniJanela();
+                    // alert(`${nome} foi adicionado ao carrinho!`); // Linha comentada, removendo o alerta
                 }
-            }
+
+                function finalizarPedido() {
+                    if (produtos.length > 0) {
+                        // Substitua esta linha pela sua lógica de finalização de pedido
+                        // alert('numero de protocolo enviado para seu celular ou Email'); // Linha comentada, removendo o alerta
+                        produtos = [];
+                        total = 0;
+                        listarProdutos();
+                        atualizarTotal();
+                    } else {
+                        // alert('Adicione algum produto ao carrinho antes de finalizar o pedido.'); // Linha comentada, removendo o alerta
+                    }
+                }
                 // Inicializa o carrinho com uma mensagem de vazio
                 listarProdutos();
-function adicionarAoCarrinhoComContador(nome, preco) {
-    let produtoExiste = false;
-    for (let i = 0; i < produtos.length; i++) {
-        if (produtos[i].nome === nome) {
-            produtos[i].quantidade++;
-            produtoExiste = true;
-            break;
-        }
-    }
-    if (!produtoExiste) {
-        produtos.push({ nome, preco, quantidade: 1 });
-    }
-    total += preco;
-    listarProdutos();
-    atualizarTotal();
-}
+                function adicionarAoCarrinhoComContador(nome, preco) {
+                    let produtoExiste = false;
+                    for (let i = 0; i < produtos.length; i++) {
+                        if (produtos[i].nome === nome) {
+                            produtos[i].quantidade++;
+                            produtoExiste = true;
+                            break;
+                        }
+                    }
+                    if (!produtoExiste) {
+                        produtos.push({ nome, preco, quantidade: 1 });
+                    }
+                    total += preco;
+                    listarProdutos();
+                    atualizarTotal();
+                }
 
-function removerProdutoComContador(index) {
-    let produto = produtos[index];
-    if (produto.quantidade > 1) {
-        produto.quantidade--;
-        total -= produto.preco;
-    } else {
-        total -= produto.preco;
-        produtos.splice(index, 1);
-    }
-    listarProdutos();
-    atualizarTotal();
-}
+                function removerProdutoComContador(index) {
+                    let produto = produtos[index];
+                    if (produto.quantidade > 1) {
+                        produto.quantidade--;
+                        total -= produto.preco;
+                    } else {
+                        total -= produto.preco;
+                        produtos.splice(index, 1);
+                    }
+                    listarProdutos();
+                    atualizarTotal();
+                }
 
-  function abrirSobreposicao() {
-    // Cria a div de sobreposição
-    const sobreposicao = document.createElement('div');
-    sobreposicao.className = 'sobreposicao';
-  
-    // Conteúdo da sobreposição
-    const conteudoSobreposicao = document.createElement('div');
-    conteudoSobreposicao.className = 'conteudo-sobreposicao';
-    conteudoSobreposicao.innerHTML = `
-      <h2>Complemento</h2>
-      <p>Selecione o complemento desejado:</p>
-      <!-- Aqui você pode adicionar opções de complementos -->
-    `;
-  
-    // Botão para fechar a sobreposição
-    const botaoFechar = document.createElement('button');
-    botaoFechar.textContent = 'Fechar';
-    botaoFechar.onclick = function () { fecharSobreposicao(sobreposicao); };
-  
-    conteudoSobreposicao.appendChild(botaoFechar);
-    sobreposicao.appendChild(conteudoSobreposicao);
-  
-    // Adiciona a sobreposição ao corpo do documento
-    document.body.appendChild(sobreposicao);
-  }
-  
-  function fecharSobreposicao(sobreposicao) {
-    sobreposicao.remove();
-  }              
+              
             </script>
-            
-           
 
-            
+
+
+
     </section>
 
 
