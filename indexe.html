@@ -55,71 +55,93 @@
                         <!-- Conteúdo do Modal -->
                         <style class="modal-content">
                             body {
-    font-family: Arial, sans-serif;
-    
-    margin: 0;
-    padding: 0;
-}
+                                font-family: Arial, sans-serif;
 
-h2 {
-    text-align: center;
-    color: #333;
-}
+                                margin: 0;
+                                padding: 0;
+                            }
 
-form {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+                            h2 {
+                                text-align: center;
+                                color: #333;
+                            }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-}
+                            form {
+                                max-width: 400px;
+                                margin: 20px auto;
+                                padding: 20px;
+                                background: #fff;
+                                border-radius: 5px;
+                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                            }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+                            label {
+                                display: block;
+                                margin-bottom: 5px;
+                            }
 
-input[type="submit"] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+                            input[type="text"],
+                            input[type="email"],
+                            input[type="password"] {
+                                width: 100%;
+                                padding: 8px;
+                                margin-bottom: 10px;
+                                border: 1px solid #ccc;
+                                border-radius: 4px;
+                                box-sizing: border-box;
+                            }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
+                            input[type="submit"] {
+                                width: 100%;
+                                background-color: #4CAF50;
+                                color: white;
+                                padding: 10px;
+                                border: none;
+                                border-radius: 4px;
+                                cursor: pointer;
+                            }
+
+                            input[type="submit"]:hover {
+                                background-color: #45a049;
+                            }
+
+                            .item {
+                                position: relative;
+                                /* Permite posicionar a imagem de forma absoluta em relação ao item */
+                            }
+
+                            .imagem-pequena {
+                                position: absolute;
+                                /* Permite posicionar a imagem de forma absoluta na frente do item */
+                                width: 30px;
+                                /* Largura da imagem */
+                                height: auto;
+                                /* Altura automática para manter a proporção */
+                                top: -15px;
+                                /* Posiciona a imagem 15px acima do topo do item */
+                                left: -15px;
+                                /* Posiciona a imagem 15px à esquerda do item */
+                                border-radius: 50%;
+                                /* Para tornar a imagem redonda, se desejado */
+                            }
                         </style>
-                       <form action="/caminho_para_o_servidor" method="POST">
-                           <label ><img src="assets/img/prato11.jpg" alt="prato"></label>
-                            <label for="text">complemento para sua bebida</label>
-                           
-                           <label for="email">E-mail:</label>
-                           <input type="email" id="email" name="email" required><br><br>
-                       
-                           <label for="senha">Senha:</label>
-                           <input type="password" id="senha" name="senha" required><br><br>
-                       
-                           <label for="confirmar_senha">Confirmar Senha:</label>
-                           <input type="password" id="confirmar_senha" name="confirmar_senha" required><br><br>
-                       
-                           <input type="submit" value="Cadastrar">
-                       </form>
+                        <form action="/caminho_para_o_servidor" method="POST">
+                            <div id="modalComplementos" class="modal-complementos">
+                                <!-- Conteúdo do Modal aqui -->
+                                <ul class="complementos-lista">
+                                    <li class="complemento-item">
+                                        <div class="item">
+                                            <div class="item">
+                                                <img src="assets/img/prato5.jpg" class="imagem-menu"
+                                                    alt="Ícone do item">
+                                                <input type="checkbox"><label for="innerText">Queijo extra - R$
+                                                    3,00</label>
+
+                                            </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -144,7 +166,7 @@ input[type="submit"]:hover {
                     especial da casa. Servido em pão brioche</span>
                 <span class="menu__price">R$22,90</span>
                 <button class="button menu__button" onclick="adicionarAoCarrinho('Classico Lecos', 22.90)"><i
-                    class='bx bx-cart-alt'></i></button>
+                        class='bx bx-cart-alt'></i></button>
 
             </div>
 
