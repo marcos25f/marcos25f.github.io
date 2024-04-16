@@ -72,8 +72,9 @@
                                             Fatias crocantes de bacon defumado
                                         </td>
                                         <td style="width: 25%; padding-left: 20px; vertical-align: middle;">
-                                            <input type="checkbox" id="queijoExtra"
-                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;">
+                                            <input type="checkbox" id="item" data-nome="Bacon Extra" data-preco="3.00
+                                                style=" width: 20px; height: 20px; margin-right: 10px; vertical-align:
+                                                middle;">
                                             <label for="queijoExtra" style="font-size: larger;">R$ 3,00</label>
                                         </td>
                                     </tr>
@@ -388,7 +389,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>
@@ -628,7 +629,10 @@
                             abrirMenudeComplemento()
                         };
 
+
+
                         listaProdutos.appendChild(botaoComplemento);
+                        
                     });
 
                     if (produtos.length === 0) {
@@ -731,7 +735,25 @@
 
                 function fecharSobreposicao(sobreposicao) {
                     sobreposicao.remove();
-                }              
+                }
+
+                // Captura o input e adiciona o evento de clique
+                const inputItem = document.getElementById('item');
+
+                inputItem.addEventListener('click', function () {
+                    const nomeItem = inputItem.getAttribute('data-nome');
+                    const precoItem = parseFloat(inputItem.getAttribute('data-preco'));
+
+                    adicionarItem(nomeItem, precoItem);
+                });
+
+                // Função para adicionar item ao carrinho
+                function adicionarItem(nome, preco) {
+                    produtos.push({ nome, preco, quantidade: 1 });
+                    total += preco;
+                    listarProdutos();
+                    atualizarTotal();
+                }
             </script>
 
 
