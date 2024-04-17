@@ -72,10 +72,10 @@
                                             Fatias crocantes de bacon defumado
                                         </td>
                                         <td style="width: 25%; padding-left: 20px; vertical-align: middle;">
-                                            <input type="checkbox" id="item" data-nome="Bacon Extra" data-preco="3.00
-                                                style=" width: 20px; height: 20px; margin-right: 10px; vertical-align:
-                                                middle;">
-                                            <label for="queijoExtra" style="font-size: larger;">R$ 3,00</label>
+                                            <input type="checkbox" id="baconExtra"
+                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;""
+                                                onclick=" adicionarComplemento('Bacon Extra', 3.00, this.checked);">
+                                            <label for="baconExtra" style="font-size: larger;">R$ 3,00</label>
                                         </td>
                                     </tr>
                                     <!-- Repita a estrutura <tr>...</tr> para os outros itens -->
@@ -96,9 +96,11 @@
                                             Cebola lentamente caramelizada para adicionar doçura.
                                         </td>
                                         <td style="width: 25%; padding-left: 20px; vertical-align: middle;">
-                                            <input type="checkbox" id="queijoExtra"
-                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;">
-                                            <label for="queijoExtra" style="font-size: larger;">R$ 2,00</label>
+                                            <input type="checkbox" id="CebolaCaramelizada"
+                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;""
+                                                onclick=" adicionarComplemento('Cebola Caramelizada', 2.00, this.checked);">
+                                            <label for="CebolaCaramelizada" style="font-size: larger;">R$ 2,00</label>
+                                            
                                         </td>
                                     </tr>
 
@@ -591,6 +593,7 @@
                     document.getElementById('total').textContent = `R$ ${total.toFixed(2)}`;
                 }
 
+
                 function listarProdutos() {
                     const listaProdutos = document.getElementById('lista-produtos');
                     listaProdutos.innerHTML = '';
@@ -599,10 +602,14 @@
                         const itemLinha = document.createElement('div');
                         itemLinha.classList.add('carrinho-item');
 
+                        // Adiciona nome e preço do produto
                         const nomeProduto = document.createElement('span');
                         nomeProduto.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
                         nomeProduto.classList.add('carrinho-item-nome');
                         itemLinha.appendChild(nomeProduto);
+
+                        // Checa se o produto é um complemento
+                        const ehComplemento = produto.nome.endsWith('Complemento');
 
                         const botaoMenos = document.createElement('button');
                         botaoMenos.textContent = '-';
@@ -621,18 +628,21 @@
 
                         listaProdutos.appendChild(itemLinha);
 
-                        // Adicionar botão "Adicionar Complemento" após cada item do carrinho
-                        const botaoComplemento = document.createElement('button');
-                        botaoComplemento.textContent = 'Adicionar Complemento';
-                        botaoComplemento.classList.add('carrinho-item-complemento');
-                        botaoComplemento.onclick = function () {
-                            abrirMenudeComplemento()
-                        };
+                        if (!ehComplemento) {
+                           
 
+                            // Adicionar botão "Adicionar Complemento" após cada item do carrinho
+                            const botaoComplemento = document.createElement('button');
+                            botaoComplemento.textContent = 'Adicionar Complemento';
+                            botaoComplemento.classList.add('carrinho-item-complemento');
+                            botaoComplemento.onclick = function () {
+                                abrirMenudeComplemento()
+                            };
 
+                            itemLinha.appendChild(botaoComplemento);
+                        }
 
-                        listaProdutos.appendChild(botaoComplemento);
-                        
+                        listaProdutos.appendChild(itemLinha);
                     });
 
                     if (produtos.length === 0) {
@@ -737,23 +747,22 @@
                     sobreposicao.remove();
                 }
 
-                // Captura o input e adiciona o evento de clique
-                const inputItem = document.getElementById('item');
-
-                inputItem.addEventListener('click', function () {
-                    const nomeItem = inputItem.getAttribute('data-nome');
-                    const precoItem = parseFloat(inputItem.getAttribute('data-preco'));
-
-                    adicionarItem(nomeItem, precoItem);
-                });
-
-                // Função para adicionar item ao carrinho
-                function adicionarItem(nome, preco) {
-                    produtos.push({ nome, preco, quantidade: 1 });
-                    total += preco;
-                    listarProdutos();
-                    atualizarTotal();
+                function adicionarComplemento(nomeComplemento, precoComplemento, isChecked) {
+                    let nomeProduto = nomeComplemento + " Complemento";
+                    if (isChecked) {
+                        // Se o complemento foi marcado, adicione-o ao carrinho
+                        adicionarProduto(nomeProduto, precoComplemento);
+                    } else {
+                        // Se o complemento foi desmarcado, procure-o no carrinho e remova
+                        for (let i = 0; i < produtos.length; i++) {
+                            if (produtos[i].nome === nomeProduto) {
+                                removerProduto(i);
+                                break;
+                            }
+                        }
+                    }
                 }
+
             </script>
 
 
