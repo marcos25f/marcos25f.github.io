@@ -98,9 +98,10 @@
                                         <td style="width: 25%; padding-left: 20px; vertical-align: middle;">
                                             <input type="checkbox" id="CebolaCaramelizada"
                                                 style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;""
-                                                onclick=" adicionarComplemento('Cebola Caramelizada', 2.00, this.checked);">
+                                                onclick=" adicionarComplemento('Cebola Caramelizada', 2.00,
+                                                this.checked);">
                                             <label for="CebolaCaramelizada" style="font-size: larger;">R$ 2,00</label>
-                                            
+
                                         </td>
                                     </tr>
 
@@ -118,9 +119,11 @@
                                             Porção extra de cheddar derretido e cremoso.
                                         </td>
                                         <td style="width: 25%; padding-left: 20px; vertical-align: middle;">
-                                            <input type="checkbox" id="queijoExtra"
-                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;">
-                                            <label for="queijoExtra" style="font-size: larger;">R$ 2,50</label>
+                                            <input type="checkbox" id="cheddarCremoso"
+                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;""
+                                                onclick=" adicionarComplemento('Cheddar Cremoso', 2.50,
+                                                this.checked);">
+                                            <label for="cheddarCremoso" style="font-size: larger;">R$ 2,50</label>
                                         </td>
                                     </tr>
 
@@ -138,9 +141,10 @@
                                             Ovo frito com gema mole para incrementar seu lanche.
                                         </td>
                                         <td style="width: 25%; padding-left: 20px; vertical-align: middle;">
-                                            <input type="checkbox" id="queijoExtra"
-                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;">
-                                            <label for="queijoExtra" style="font-size: larger;">R$ 2,00</label>
+                                            <input type="checkbox" id="OvoFrito"
+                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;""
+                                                onclick=" adicionarComplemento('Ovo Frito', 2.50, this.checked);">
+                                            <label for="OvoFrito" style="font-size: larger;">R$ 2,50</label>
                                         </td>
                                     </tr>
 
@@ -158,9 +162,10 @@
                                             Molho caseiro da casa com especiarias únicas.
                                         </td>
                                         <td style="width: 25%; padding-left: 20px; vertical-align: middle;">
-                                            <input type="checkbox" id="queijoExtra"
-                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;">
-                                            <label for="queijoExtra" style="font-size: larger;">R$ 1,50</label>
+                                            <input type="checkbox" id="MolhoEspecial"
+                                            style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;""
+                                            onclick=" adicionarComplemento('Molho Especial', 1.50, this.checked);">
+                                        <label for="MolhoEspecial" style="font-size: larger;">R$ 1,50</label>
                                         </td>
                                     </tr>
 
@@ -178,9 +183,10 @@
                                             Purê de abacate temperado com limão e pimenta.
                                         </td>
                                         <td style="width: 25%; padding-left: 20px; vertical-align: middle;">
-                                            <input type="checkbox" id="queijoExtra"
-                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;">
-                                            <label for="queijoExtra" style="font-size: larger;">R$ 4,00</label>
+                                            <input type="checkbox" id="AvocadoSmash"
+                                            style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;""
+                                            onclick=" adicionarComplemento('Avocado Smash', 4.00, this.checked);">
+                                        <label for="AvocadoSmash" style="font-size: larger;">R$ 4,00</label>
                                         </td>
                                     </tr>
 
@@ -198,9 +204,10 @@
                                             Fatias extras de picles para um toque ácido
                                         </td>
                                         <td style="width: 25%; padding-left: 20px; vertical-align: middle;">
-                                            <input type="checkbox" id="queijoExtra"
-                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;">
-                                            <label for="queijoExtra" style="font-size: larger;">R$ 1,00</label>
+                                            <input type="checkbox" id="PiclesExtra"
+                                            style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;""
+                                            onclick=" adicionarComplemento('Picles Extra', 1.00, this.checked);">
+                                        <label for="PiclesExtra" style="font-size: larger;">R$ 1,00</label>
                                         </td>
                                     </tr>
 
@@ -218,12 +225,14 @@
                                             Porção de gorgonzola para os amantes de queijos fortes.
                                         </td>
                                         <td style="width: 25%; padding-left: 20px; vertical-align: middle;">
-                                            <input type="checkbox" id="queijoExtra"
-                                                style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;">
-                                            <label for="queijoExtra" style="font-size: larger;">R$ 4,00</label>
+                                            <input type="checkbox" id="Queijo Gorgonzola"
+                                            style="width: 20px; height: 20px; margin-right: 10px; vertical-align: middle;""
+                                            onclick=" adicionarComplemento('QueijoGorgonzola', 4.00, this.checked);">
+                                        <label for="QueijoGorgonzola" style="font-size: larger;">R$ 4,00</label>
                                         </td>
                                     </tr>
                                 </table>
+
                                 <h2 style="text-align: center; color: white;">Para Sobremesas</h2>
 
                                 <table style="width: 100%;">
@@ -629,7 +638,7 @@
                         listaProdutos.appendChild(itemLinha);
 
                         if (!ehComplemento) {
-                           
+
 
                             // Adicionar botão "Adicionar Complemento" após cada item do carrinho
                             const botaoComplemento = document.createElement('button');
