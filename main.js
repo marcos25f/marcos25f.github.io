@@ -118,3 +118,222 @@ if (document.readyState == 'loading') {
     totalAmount = totalAmount.replace(".", ",")
     document.querySelector(".cart-total-container span").innerText = "R$" + totalAmount
   }
+
+
+  let produtos = [];
+                let total = 0;
+
+                function abrirMiniJanela() {
+                    document.getElementById('carrinho').style.display = 'block';
+                }
+
+                function fecharMiniJanela() {
+                    document.getElementById('carrinho').style.display = 'none';
+                }
+
+                function adicionarProduto(nome, preco) {
+                    let produtoExiste = false;
+                    for (let i = 0; i < produtos.length; i++) {
+                        if (produtos[i].nome === nome) {
+                            produtos[i].quantidade++;
+                            produtoExiste = true;
+                            break;
+                        }
+                    }
+                    if (!produtoExiste) {
+                        produtos.push({ nome, preco, quantidade: 1 });
+                    }
+                    total += preco;
+                    listarProdutos();
+                    atualizarTotal();
+                }
+
+                function removerProduto(index) {
+                    let produto = produtos[index];
+                    if (produto.quantidade > 1) {
+                        produto.quantidade--;
+                        total -= produto.preco;
+                    } else {
+                        total -= produto.preco;
+                        produtos.splice(index, 1);
+                    }
+                    listarProdutos();
+                    atualizarTotal();
+                }
+
+                function atualizarTotal() {
+                    document.getElementById('total').textContent = `R$ ${total.toFixed(2)}`;
+                }
+
+
+                function listarProdutos() {
+                    const listaProdutos = document.getElementById('lista-produtos');
+                    listaProdutos.innerHTML = '';
+
+                    produtos.forEach((produto, index) => {
+                        const itemLinha = document.createElement('div');
+                        itemLinha.classList.add('carrinho-item');
+
+                        // Adiciona nome e preço do produto
+                        const nomeProduto = document.createElement('span');
+                        nomeProduto.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
+                        nomeProduto.classList.add('carrinho-item-nome');
+                        itemLinha.appendChild(nomeProduto);
+
+                        // Checa se o produto é um complemento
+                        const ehComplemento = produto.nome.endsWith('Complemento');
+
+                        const botaoMenos = document.createElement('button');
+                        botaoMenos.textContent = '-';
+                        botaoMenos.onclick = function () { removerProduto(index); };
+                        itemLinha.appendChild(botaoMenos);
+
+                        const quantidadeProduto = document.createElement('span');
+                        quantidadeProduto.textContent = ` ${produto.quantidade}`;
+                        quantidadeProduto.classList.add('carrinho-item-quantidade');
+                        itemLinha.appendChild(quantidadeProduto);
+
+                        const botaoMais = document.createElement('button');
+                        botaoMais.textContent = '+';
+                        botaoMais.onclick = function () { adicionarAoCarrinho(produto.nome, produto.preco); };
+                        itemLinha.appendChild(botaoMais);
+
+                        listaProdutos.appendChild(itemLinha);
+
+                        if (!ehComplemento) {
+
+
+                            // Adicionar botão "Adicionar Complemento" após cada item do carrinho
+                            const botaoComplemento = document.createElement('button');
+                            botaoComplemento.textContent = 'Adicionar Complemento';
+                            botaoComplemento.classList.add('carrinho-item-complemento');
+                            botaoComplemento.onclick = function () {
+                                abrirMenudeComplemento()
+                            };
+
+                            itemLinha.appendChild(botaoComplemento);
+                        }
+
+                        listaProdutos.appendChild(itemLinha);
+                    });
+
+                    if (produtos.length === 0) {
+                        listaProdutos.innerHTML = '<li>Seu carrinho está vazio. Adicione produtos!</li>';
+                    }
+                }
+                function abrirMenudeComplemento() {
+                    var modal = document.getElementById("modalComplemento");
+                    modal.style.display = "block";
+                }
+
+                // Quando o usuário clica em (x), feche a janela modal
+                document.getElementsByClassName("close")[0].onclick = function () {
+                    var modal = document.getElementById("modalComplemento");
+                    modal.style.display = "none";
+                }
+
+                // Quando o usuário clica fora da janela modal, feche-a
+                window.onclick = function (event) {
+                    var modal = document.getElementById("modalComplemento");
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+                function adicionarAoCarrinho(nome, preco) {
+                    adicionarProduto(nome, preco);
+                    abrirMiniJanela();
+                    // alert(`${nome} foi adicionado ao carrinho!`); // Linha comentada, removendo o alerta
+                }
+
+                function finalizarPedido() {
+                    if (produtos.length > 0) {
+                        // Substitua esta linha pela sua lógica de finalização de pedido
+                        // alert('numero de protocolo enviado para seu celular ou Email'); // Linha comentada, removendo o alerta
+                        produtos = [];
+                        total = 0;
+                        listarProdutos();
+                        atualizarTotal();
+                    } else {
+                        // alert('Adicione algum produto ao carrinho antes de finalizar o pedido.'); // Linha comentada, removendo o alerta
+                    }
+                }
+                // Inicializa o carrinho com uma mensagem de vazio
+                listarProdutos();
+                function adicionarAoCarrinhoComContador(nome, preco) {
+                    let produtoExiste = false;
+                    for (let i = 0; i < produtos.length; i++) {
+                        if (produtos[i].nome === nome) {
+                            produtos[i].quantidade++;
+                            produtoExiste = true;
+                            break;
+                        }
+                    }
+                    if (!produtoExiste) {
+                        produtos.push({ nome, preco, quantidade: 1 });
+                    }
+                    total += preco;
+                    listarProdutos();
+                    atualizarTotal();
+                }
+
+                function removerProdutoComContador(index) {
+                    let produto = produtos[index];
+                    if (produto.quantidade > 1) {
+                        produto.quantidade--;
+                        total -= produto.preco;
+                    } else {
+                        total -= produto.preco;
+                        produtos.splice(index, 1);
+                    }
+                    listarProdutos();
+                    atualizarTotal();
+                }
+
+                function abrirSobreposicao() {
+                    // Cria a div de sobreposição
+                    const sobreposicao = document.createElement('div');
+                    sobreposicao.className = 'sobreposicao';
+
+                    // Conteúdo da sobreposição
+                    const conteudoSobreposicao = document.createElement('div');
+                    conteudoSobreposicao.className = 'conteudo-sobreposicao';
+                    conteudoSobreposicao.innerHTML = `
+      <h2>Complemento</h2>
+      <p>Selecione o complemento desejado:</p>
+      <!-- Aqui você pode adicionar opções de complementos -->
+    `;
+
+                    // Botão para fechar a sobreposição
+                    const botaoFechar = document.createElement('button');
+                    botaoFechar.textContent = 'Fechar';
+                    botaoFechar.onclick = function () { fecharSobreposicao(sobreposicao); };
+
+                    conteudoSobreposicao.appendChild(botaoFechar);
+                    sobreposicao.appendChild(conteudoSobreposicao);
+
+                    // Adiciona a sobreposição ao corpo do documento
+                    document.body.appendChild(sobreposicao);
+                }
+
+                function fecharSobreposicao(sobreposicao) {
+                    sobreposicao.remove();
+                }
+
+                function adicionarComplemento(nomeComplemento, precoComplemento, isChecked) {
+                    let nomeProduto = nomeComplemento + " Complemento";
+                    if (isChecked) {
+                        // Se o complemento foi marcado, adicione-o ao carrinho
+                        adicionarProduto(nomeProduto, precoComplemento);
+                    } else {
+                        // Se o complemento foi desmarcado, procure-o no carrinho e remova
+                        for (let i = 0; i < produtos.length; i++) {
+                            if (produtos[i].nome === nomeProduto) {
+                                removerProduto(i);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+
+                
