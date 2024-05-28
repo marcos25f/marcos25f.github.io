@@ -118,3 +118,37 @@ button:hover {
   .modal button:hover {
     background-color: #0056b3; /* Mudança de cor ao passar o mouse */
   }
+
+  /* Estilo dos botões + e - */
+.boton-mais,
+.boton-menos {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+/* Estilo do botão de adicionar complemento na aba do carrinho */
+.boton-adicionar-complemento {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.boton-adicionar-complemento:hover {
+    background-color: #218838;
+}
+
+/* Estilizando botões quando pressionados */
+.boton-mais:active,
+.boton-menos:active,
+.boton-adicionar-complemento:active {
+    transform: translateY(1px);
+}

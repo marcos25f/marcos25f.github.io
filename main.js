@@ -328,12 +328,15 @@ if (document.readyState == 'loading') {
                         // Se o complemento foi desmarcado, procure-o no carrinho e remova
                         for (let i = 0; i < produtos.length; i++) {
                             if (produtos[i].nome === nomeProduto) {
-                                removerProduto(i);
+                                
                                 break;
                             }
                         }
                     }
+                    
                 }
+
+                
 
 
                 
