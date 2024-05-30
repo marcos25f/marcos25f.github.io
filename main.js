@@ -339,4 +339,129 @@ if (document.readyState == 'loading') {
                 
 
 
+                let contadorCarrinho = 0; // Inicializa o contador do carrinho
+                const spanContador = document.getElementById('contador-carrinho');
+                
+                function atualizarContadorCarrinho() {
+                    spanContador.textContent = contadorCarrinho;
+                }
+                
+                function adicionarProduto(nome, preco) {
+                    let produtoExiste = false;
+                    for (let i = 0; i < produtos.length; i++) {
+                        if (produtos[i].nome === nome) {
+                            produtos[i].quantidade++;
+                            produtoExiste = true;
+                            break;
+                        }
+                    }
+                    if (!produtoExiste) {
+                        produtos.push({ nome, preco, quantidade: 1 });
+                    }
+                    total += preco;
+                    contadorCarrinho++; // Incrementa o contador do carrinho
+                    atualizarContadorCarrinho(); // Atualiza o contador no ícone
+                    listarProdutos();
+                    atualizarTotal();
+                }
+                
+                function removerProduto(index) {
+                    let produto = produtos[index];
+                    if (produto.quantidade > 1) {
+                        produto.quantidade--;
+                        total -= produto.preco;
+                    } else {
+                        total -= produto.preco;
+                        produtos.splice(index, 1);
+                    }
+                    contadorCarrinho--; // Decrementa o contador do carrinho
+                    atualizarContadorCarrinho(); // Atualiza o contador no ícone
+                    listarProdutos();
+                    atualizarTotal();
+                }
+                
+                // Função para listar os produtos no carrinho
+                function listarProdutos() {
+                    const listaProdutos = document.getElementById('lista-produtos');
+                    listaProdutos.innerHTML = '';
+                
+                    produtos.forEach((produto, index) => {
+                        const itemLinha = document.createElement('div');
+                        itemLinha.classList.add('carrinho-item');
+                
+                        const nomeProduto = document.createElement('span');
+                        nomeProduto.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
+                        nomeProduto.classList.add('carrinho-item-nome');
+                        itemLinha.appendChild(nomeProduto);
+                
+                        const ehComplemento = produto.nome.endsWith('Complemento');
+                
+                        const botaoMenos = document.createElement('button');
+                        botaoMenos.textContent = '-';
+                        botaoMenos.onclick = function () { removerProduto(index); };
+                        itemLinha.appendChild(botaoMenos);
+                
+                        const quantidadeProduto = document.createElement('span');
+                        quantidadeProduto.textContent = ` ${produto.quantidade}`;
+                        quantidadeProduto.classList.add('carrinho-item-quantidade');
+                        itemLinha.appendChild(quantidadeProduto);
+                
+                        const botaoMais = document.createElement('button');
+                        botaoMais.textContent = '+';
+                        botaoMais.onclick = function () { adicionarProduto(produto.nome, produto.preco); };
+                        itemLinha.appendChild(botaoMais);
+                
+                        listaProdutos.appendChild(itemLinha);
+                
+                        if (!ehComplemento) {
+                            const botaoComplemento = document.createElement('button');
+                            botaoComplemento.textContent = 'Adicionar Complemento';
+                            botaoComplemento.classList.add('carrinho-item-complemento');
+                            botaoComplemento.onclick = function () {
+                                abrirMenudeComplemento()
+                            };
+                            itemLinha.appendChild(botaoComplemento);
+                        }
+                
+                        listaProdutos.appendChild(itemLinha);
+                    });
+                
+                    if (produtos.length === 0) {
+                        listaProdutos.innerHTML = '<li>Seu carrinho está vazio. Adicione produtos!</li>';
+                    }
+                }
+                
+                // Função para abrir a mini janela do carrinho
+                function abrirMiniJanela() {
+                    document.getElementById('carrinho').style.display = 'block';
+                }
+                
+                // Função para fechar a mini janela do carrinho
+                function fecharMiniJanela() {
+                    document.getElementById('carrinho').style.display = 'none';
+                }
+                
+                // Atualiza o total do carrinho
+                function atualizarTotal() {
+                    document.getElementById('total').textContent = `R$ ${total.toFixed(2)}`;
+                }
+                
+                function adicionarAoCarrinho(nome, preco) {
+                    adicionarProduto(nome, preco);
+                    abrirMiniJanela();
+                }
+                
+                function finalizarPedido() {
+                    if (produtos.length > 0) {
+                        produtos = [];
+                        total = 0;
+                        contadorCarrinho = 0; // Reseta o contador quando o pedido é finalizado
+                        atualizarContadorCarrinho(); // Atualiza o contador no ícone
+                        listarProdutos();
+                        atualizarTotal();
+                    }
+                }
+                
+                // Inicializa o carrinho com uma mensagem de vazio
+                listarProdutos();
                 
