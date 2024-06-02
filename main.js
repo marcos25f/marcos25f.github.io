@@ -465,3 +465,17 @@ if (document.readyState == 'loading') {
                 // Inicializa o carrinho com uma mensagem de vazio
                 listarProdutos();
                 
+                function capturarTelaCarrinho() {
+                    const carrinho = document.getElementById('carrinho');
+                    html2canvas(carrinho).then(canvas => {
+                        const img = canvas.toDataURL('image/png');
+                        const link = document.createElement('a');
+                        link.href = img;
+                        link.download = 'carrinho.png';
+                        link.click();
+                    });
+                }
+        
+                document.getElementById('modalComplemento').querySelector('.close').addEventListener('click', function () {
+                    document.getElementById('modalComplemento').style.display = 'none';
+                });
