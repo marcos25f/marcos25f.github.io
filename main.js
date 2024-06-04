@@ -465,15 +465,33 @@ if (document.readyState == 'loading') {
                 // Inicializa o carrinho com uma mensagem de vazio
                 listarProdutos();
                 
-                function capturarTelaCarrinho() {
+                function listarItensCarrinho() {
                     const carrinho = document.getElementById('carrinho');
-                    html2canvas(carrinho).then(canvas => {
-                        const img = canvas.toDataURL('image/png');
-                        const link = document.createElement('a');
-                        link.href = img;
-                        link.download = 'carrinho.png';
-                        link.click();
-                    });
+                    const listaProdutos = carrinho.querySelector('#lista-produtos').innerHTML;
+                    const total = carrinho.querySelector('#total').innerHTML;
+                    const observacoes = carrinho.querySelector('#observacoes-gerais').value;
+        
+                    let conteudoHTML = `
+                        <div style="font-family: Arial, sans-serif; color: #333;">
+                            <h2 style="text-align: center; color: orange;">Itens do Carrinho</h2>
+                            <div>
+                                <h3>Produtos:</h3>
+                                ${listaProdutos}
+                            </div>
+                            <div>
+                                <p>Total: <strong>${total}</strong></p>
+                            </div>
+                            <div>
+                                <h3>Observações:</h3>
+                                <p>${observacoes}</p>
+                            </div>
+                        </div>
+                    `;
+        
+                    const novaJanela = window.open('', '_blank');
+                    novaJanela.document.write(conteudoHTML);
+                    novaJanela.document.title = "Itens do Carrinho";
+                    novaJanela.document.close();
                 }
         
                 document.getElementById('modalComplemento').querySelector('.close').addEventListener('click', function () {

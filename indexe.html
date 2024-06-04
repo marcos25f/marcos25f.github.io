@@ -8,30 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Lecos's Burguer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .upload-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .image-preview {
-            margin-top: 20px;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        #cartContent {
-            display: none;
-            text-align: center;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -58,7 +35,10 @@
                 <button class="button menu__button" onclick="abrirMiniJanela()"><i class='bx bx-cart-alt'></i>
                     <span id="contador-carrinho" class="contador">0</span>
                 </button>
-
+                <button class="botao-carrinho" onclick="listarItensCarrinho()">
+                    <i class='bx bx-list-ul'></i> <!-- Ícone para representar a listagem dos itens -->
+                </button>
+                
                 <div id="carrinho" class="carrinho-popup">
                     <h2 style="color: orange;">Carrinho de Compras</h2>
                     <ul id="lista-produtos"></ul>
@@ -71,11 +51,9 @@
                     <button class="botao-carrinho" onclick="finalizarPedido()">
                         <i class='bx bx-cart-alt'></i>
                     </button>
-                    <button class="botao-carrinho" onclick="capturarTelaCarrinho()">
-                        <i class='bx bx-camera'></i>
-                    </button>
+                    
                 </div>
-
+            </div>
                 <div id="modalComplemento" class="modal">
                     <div class="modal-content">
                         <span class="close">&times;</span>
@@ -645,28 +623,6 @@
 
         <!-- Biblioteca html2canvas -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-        <script>
-            function capturarTelaCarrinho() {
-                const carrinho = document.getElementById('carrinho');
-                const listaProdutos = carrinho.querySelector('#lista-produtos').innerHTML;
-                const total = carrinho.querySelector('#total').innerHTML;
-                const observacoes = carrinho.querySelector('#observacoes-gerais').value;
-
-                let conteudoTexto = "Carrinho de Compras\n";
-                conteudoTexto += "Produtos:\n" + listaProdutos + "\n";
-                conteudoTexto += "Total: " + total + "\n";
-                conteudoTexto += "Observações: " + observacoes;
-
-                const novaJanela = window.open('', '_blank');
-                novaJanela.document.write('<pre>' + conteudoTexto + '</pre>');
-                novaJanela.document.title = "Seus Pedidos";
-            }
-
-            document.getElementById('modalComplemento').querySelector('.close').addEventListener('click', function () {
-                document.getElementById('modalComplemento').style.display = 'none';
-            });
-        </script>
         
         <script src="https://unpkg.com/scrollreveal"></script>
         <script src="assets/js/main.js"></script>
